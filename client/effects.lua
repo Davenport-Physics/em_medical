@@ -14,7 +14,9 @@
 
 function calculate_pain()
 
-
+    for k, v in pairs(PLAYER.WOUNDS) do
+        
+    end
 
 end
 
@@ -23,7 +25,7 @@ local function reduce_effect_time(effect)
     local effect_vec = PLAYER.SHORTERM_EFFECTS[effect]
     local current_time = GetGameTimer()
     local dt = current_time - effect_vec.last_update_time
-    
+
     effect_vec.effect_time = effect_vec.effect_time - dt
     effect_vec.last_update_time = current_time
 
@@ -53,6 +55,12 @@ local function adrenaline_effect()
         end
 
     end
+
+end
+
+function debug_effects()
+
+    assert(not (PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil and PLAYER.SHORTERM_EFFECTS["No Adrenaline"] ~= nil))
 
 end
 

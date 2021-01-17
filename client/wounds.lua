@@ -1,93 +1,111 @@
 
-local function apply_hand_damage()
+local function add_wound(bone_idx, wound_type)
+
+	local bone_name = CHECKED_BONES[bone_idx].name
+
+	if PLAYER.WOUNDS[bone_name] == nil then
+		PLAYER.WOUNDS[bone_name] = {}
+	end
+
+	if PLAYER.WOUNDS[bone_name][wound_type.name] == nil then
+		PLAYER.WOUNDS[bone_name][wound_type.name] = 0
+	end
+	
+	PLAYER.WOUNDS[bone_name][wound_type.name] = PLAYER.WOUNDS[bone_name][wound_type.name] + 1
 
 end
 
-local function apply_mild_blunt()
+local function apply_hand_damage(bone_idx, weapon_idx)
 
 end
 
-local function apply_severe_blunt()
+local function apply_mild_blunt(bone_idx, weapon_idx)
 
 end
 
-local function apply_sharp()
+local function apply_severe_blunt(bone_idx, weapon_idx)
 
 end
 
-local function apply_severe_sharp()
+local function apply_sharp(bone_idx, weapon_idx)
 
 end
 
-local function apply_small_caliber_round()
+local function apply_severe_sharp(bone_idx, weapon_idx)
 
 end
 
-local function apply_medium_caliber_round()
+local function apply_small_caliber_round(bone_idx, weapon_idx)
 
 end
 
-local function apply_large_caliber_round()
+local function apply_medium_caliber_round(bone_idx, weapon_idx)
 
 end
 
-local function apply_less_lethal()
+local function apply_large_caliber_round(bone_idx, weapon_idx)
 
 end
 
-local function apply_fire()
+local function apply_less_lethal(bone_idx, weapon_idx)
 
 end
 
-local function apply_teeth()
+local function apply_fire(bone_idx, weapon_idx)
 
 end
 
-local function apply_hand()
+local function apply_teeth(bone_idx, weapon_idx)
 
 end
 
-local function apply_arrow()
+local function apply_hand(bone_idx, weapon_idx)
 
 end
 
-local function apply_severe_arrow()
+local function apply_arrow(bone_idx, weapon_idx)
 
 end
 
-local function apply_explosion()
+local function apply_severe_arrow(bone_idx, weapon_idx)
 
 end
 
-local function apply_shotgun_shell()
+local function apply_explosion(bone_idx, weapon_idx)
 
 end
 
-local function apply_severe_shotgun_shell()
+local function apply_shotgun_shell(bone_idx, weapon_idx)
 
 end
 
-local function apply_vehicle()
+local function apply_severe_shotgun_shell(bone_idx, weapon_idx)
 
 end
 
-local function apply_fall()
+local function apply_vehicle(bone_idx, weapon_idx)
 
 end
 
-local function apply_drowning()
+local function apply_fall(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.LARGE_CONTUSION)
 
 end
 
-local function apply_mild_irritant()
+local function apply_drowning(bone_idx, weapon_idx)
 
 end
 
-local function apply_irritant()
+local function apply_mild_irritant(bone_idx, weapon_idx)
 
 end
 
-local function apply_severe_irritant()
+local function apply_irritant(bone_idx, weapon_idx)
+
+end
+
+local function apply_severe_irritant(bone_idx, weapon_idx)
 
 end
 
@@ -132,7 +150,8 @@ function apply_weapon_damage(out_bone, weapon_idx)
 
     end
 
-    if bone_idx == nil then
+	if bone_idx == nil then
+		print("Unknown bone " .. out_bone)
         return -1
     end
 
@@ -140,7 +159,7 @@ function apply_weapon_damage(out_bone, weapon_idx)
 
 		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == WEAPON_HASHES[weapon_idx][3] then
 			apply_adrenaline()
-            WEAPON_TYPE_FUNCTIONS[i].func()
+            WEAPON_TYPE_FUNCTIONS[i].func(bone_idx, weapon_idx)
             break
         end
 

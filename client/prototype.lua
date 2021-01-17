@@ -45,13 +45,15 @@
 
 local ped = nil
 
-local function detect_weapon_hit()
+local function damage_loop()
 
     for i = 1, #WEAPON_HASHES do
         local retval = GetTimeOfLastPedWeaponDamage(ped, WEAPON_HASHES[i][2])
         if GetGameTimer() - retval < 2 then
+            print("here")
             local _, out_bone = GetPedLastDamageBone(ped)
             if out_bone ~= 0 then
+                print("over here")
                 apply_weapon_damage(out_bone, i)
                 break
             end
@@ -60,18 +62,21 @@ local function detect_weapon_hit()
 
 end
 
-local function damage_loop()
-
-    detect_weapon_hit()
-
-end
-
 
 local function effects_loop()
 
+    debug_effects()
     calculate_pain()
     short_term_effects()
     long_term_effects()
+
+end
+
+local function bandage_loop()
+
+end
+
+local function blood_loop()
 
 end
 
@@ -93,14 +98,18 @@ local function start_damage_loop()
 
 end
 
-local function start_effects_loop()
+local function start_long_loop()
 
     Citizen.CreateThread(function() 
 
         Citizen.Wait(0)
         while true do
+
             effects_loop()
+            bandage_loop()
+            blood_loop()
             Citizen.Wait(100)
+
         end
     
     end)
@@ -109,11 +118,12 @@ end
 
 
 start_damage_loop()
-start_effects_loop()
+start_long_loop()
 
 RegisterCommand("check_effects", function (source, args, raw)
 
     print(json.encode(PLAYER.SHORTERM_EFFECTS))
+    print(json.encode(PLAYER.WOUNDS))
 
 end)
 
@@ -123,3 +133,9 @@ RegisterCommand("give_effect", function (source, args, raw)
 
 end)
     
+
+RegisterCommand("clear_wounds", function (source, args, raw)
+
+    PLAYER.WOUNDS = {}
+
+end)

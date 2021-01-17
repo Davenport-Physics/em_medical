@@ -11,5 +11,6 @@ client_scripts {
     'client/config.lua',
     'client/wounds.lua',
     'client/effects.lua',
-    'client/player.lua'
+    'client/player.lua',
+    'client/libs.lua'
 }
