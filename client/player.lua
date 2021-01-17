@@ -1,0 +1,9 @@
+
+PLAYER = {
+    BLOOD_PRESSURE = {SYSTOLIC = 100, DIASTOLIC = 75},
+    WOUNDS = {},
+    BANDAGES = {},
+    TEMPORARY_EFFECTS = {},
+    LONGTERM_EFFECTS  = {},
+    PERMANENT_EFFECTS = {}
+}
