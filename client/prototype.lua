@@ -63,7 +63,6 @@ end
 local function damage_loop()
 
     detect_weapon_hit()
-    apply_damage()
 
 end
 
@@ -72,7 +71,6 @@ local function effects_loop()
 
     calculate_pain()
     short_term_effects()
-    medium_term_effects()
     long_term_effects()
 
 end
@@ -112,3 +110,16 @@ end
 
 start_damage_loop()
 start_effects_loop()
+
+RegisterCommand("check_effects", function (source, args, raw)
+
+    print(json.encode(PLAYER.SHORTERM_EFFECTS))
+
+end)
+
+RegisterCommand("give_effect", function (source, args, raw)
+
+    apply_adrenaline()
+
+end)
+    

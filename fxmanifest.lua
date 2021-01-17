@@ -8,5 +8,8 @@ server_scripts {
 
 client_scripts {
     'client/prototype.lua',
-    'client/config.lua'
+    'client/config.lua',
+    'client/wounds.lua',
+    'client/effects.lua',
+    'client/player.lua'
 }

@@ -120,28 +120,6 @@ local WEAPON_TYPE_FUNCTIONS =
 
 }
 
-PLAYER = {
-    BLOOD_PRESSURE = {SYSTOLIC = 100, DIASTOLIC = 75},
-    WOUNDS = {},
-    BANDAGES = {},
-    TEMPORARY_EFFECTS = {},
-    LONGTERM_EFFECTS  = {},
-    PERMANENT_EFFECTS = {}
-}
-
-local function apply_adrenaline()
-
-	for k, v in pairs(PLAYER.TEMPORARY_EFFECTS) do
-		
-		if k == "Adrenaline" or k == "No Adrenaline" then
-			return 0
-		end
-
-	end
-	PLAYER.TEMPORARY_EFFECTS["Adrenaline"] = {time = 1000*180}
-
-end
-
 function apply_weapon_damage(out_bone, weapon_idx)
 
     local bone_idx = nil
