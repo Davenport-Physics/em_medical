@@ -1,7 +1,8 @@
 
-local function add_wound(bone_idx, wound_type)
+local function add_wound(bone_idx, wound_type, amount)
 
 	local bone_name = CHECKED_BONES[bone_idx].name
+	local amount_to_add = amount or 1
 
 	if PLAYER.WOUNDS[bone_name] == nil then
 		PLAYER.WOUNDS[bone_name] = {}
@@ -11,39 +12,59 @@ local function add_wound(bone_idx, wound_type)
 		PLAYER.WOUNDS[bone_name][wound_type.name] = 0
 	end
 	
-	PLAYER.WOUNDS[bone_name][wound_type.name] = PLAYER.WOUNDS[bone_name][wound_type.name] + 1
+	PLAYER.WOUNDS[bone_name][wound_type.name] = PLAYER.WOUNDS[bone_name][wound_type.name] + amount_to_add
 
 end
 
 local function apply_hand_damage(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.SMALL_CONTUSION, 2)
+
 end
 
 local function apply_mild_blunt(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.CONTUSION, 2)
 
 end
 
 local function apply_severe_blunt(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.LACERATION, 1)
+	add_wound(bone_idx, WOUND_TYPES.LARGE_CONTUSION, 2)
+
 end
 
 local function apply_sharp(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.PUNCTURE_WOUND)
 
 end
 
 local function apply_severe_sharp(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
+
 end
 
 local function apply_small_caliber_round(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.SMALL_GUN_SHOT)
+	add_wound(bone_idx, WOUND_TYPES.SMALL_GUN_SHOT_EXIT)
 
 end
 
 local function apply_medium_caliber_round(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
+	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT)
+
 end
 
 local function apply_large_caliber_round(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.LARGE_GUN_SHOT)
+	add_wound(bone_idx, WOUND_TYPES.LARGE_GUN_SHOT_EXIT)
 
 end
 
@@ -53,6 +74,8 @@ end
 
 local function apply_fire(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.SECOND_DEGREE_BURN)
+
 end
 
 local function apply_teeth(bone_idx, weapon_idx)
@@ -61,9 +84,14 @@ end
 
 local function apply_hand(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.SMALL_CONTUSION)
+	add_wound(bone_idx, WOUND_TYPES.SMALL_LACERATION)
+
 end
 
 local function apply_arrow(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
 
 end
 
@@ -73,17 +101,27 @@ end
 
 local function apply_explosion(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.SECOND_DEGREE_BURN)
+	add_wound(bone_idx, WOUND_TYPES.LARGE_LACERATION, 2)
+
 end
 
 local function apply_shotgun_shell(bone_idx, weapon_idx)
+
+	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
 
 end
 
 local function apply_severe_shotgun_shell(bone_idx, weapon_idx)
 
+	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
+
 end
 
 local function apply_vehicle(bone_idx, weapon_idx)
+	
+	add_wound(bone_idx, WOUND_TYPES.LACERATION, 3)
+	add_wound(bone_idx, WOUND_TYPES.CONTUSION, 2)
 
 end
 
