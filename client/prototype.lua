@@ -76,11 +76,6 @@ local function bandage_loop()
 
 end
 
-local function blood_loop()
-
-end
-
-
 local function start_damage_loop()
 
     Citizen.CreateThread(function ()
@@ -105,9 +100,9 @@ local function start_long_loop()
         Citizen.Wait(0)
         while true do
 
-            effects_loop()
+            check_wound_heal_time()
             bandage_loop()
-            blood_loop()
+            effects_loop()
             Citizen.Wait(100)
 
         end
@@ -120,10 +115,9 @@ end
 start_damage_loop()
 start_long_loop()
 
-RegisterCommand("check_effects", function (source, args, raw)
+RegisterCommand("check_player", function (source, args, raw)
 
-    print(json.encode(PLAYER.SHORTERM_EFFECTS))
-    print(json.encode(PLAYER.WOUNDS))
+    print(json.encode(PLAYER))
 
 end)
 

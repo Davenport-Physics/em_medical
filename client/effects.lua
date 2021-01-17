@@ -1,28 +1,14 @@
 
---[[
 
-    PLAYER = {
-        BLOOD_PRESSURE = {SYSTOLIC = 100, DIASTOLIC = 75},
-        WOUNDS = {},
-        BANDAGES = {},
-        TEMPORARY_EFFECTS = {},
-        LONGTERM_EFFECTS  = {},
-        PERMANENT_EFFECTS = {}
-    }
+local function pain_modifier(modifier)
 
-]]
-
-function calculate_pain()
-
-    for k, v in pairs(PLAYER.WOUNDS) do
-        
-    end
+    PLAYER.PAIN_LEVEL = PLAYER.PAIN_LEVEL + modifier * PLAYER.PAIN_LEVEL
 
 end
 
-local function reduce_effect_time(effect)
+local function reduce_effect_time(effect_type, effect)
 
-    local effect_vec = PLAYER.SHORTERM_EFFECTS[effect]
+    local effect_vec = effect_type[effect]
     local current_time = GetGameTimer()
     local dt = current_time - effect_vec.last_update_time
 
@@ -31,12 +17,42 @@ local function reduce_effect_time(effect)
 
 end
 
+local function get_wound_pain(wound, wound_amount)
+
+    for _, wound_info in pairs(WOUND_TYPES) do
+        
+        if wound_info.name == wound then
+
+            return wound_info.pain_level * wound_amount
+
+        end
+
+    end
+    return 0
+
+end
+
+function calculate_pain()
+
+    PLAYER.PAIN_LEVEL = 0
+    for _, wounds in pairs(PLAYER.WOUNDS) do
+        
+        for wound, wound_info in pairs(wounds) do
+            
+            PLAYER.PAIN_LEVEL = PLAYER.PAIN_LEVEL + get_wound_pain(wound, wound_info.amount)
+
+        end
+
+    end
+
+end
+
 local function adrenaline_effect()
 
     if PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil then
 
         PLAYER.PAIN_LEVEL = 0
-        reduce_effect_time("Adrenaline")
+        reduce_effect_time(PLAYER.SHORTERM_EFFECTS, "Adrenaline")
         if PLAYER.SHORTERM_EFFECTS["Adrenaline"].effect_time <= 0 then
 
             PLAYER.SHORTERM_EFFECTS["Adrenaline"] = nil
@@ -46,8 +62,8 @@ local function adrenaline_effect()
 
     elseif PLAYER.SHORTERM_EFFECTS["No Adrenaline"] ~= nil then
 
-        PLAYER.PAIN_LEVEL = PLAYER.PAIN_LEVEL + 0.20 * PLAYER.PAIN_LEVEL
-        reduce_effect_time("No Adrenaline")
+        pain_modifier(0.20)
+        reduce_effect_time(PLAYER.SHORTERM_EFFECTS, "No Adrenaline")
         if PLAYER.SHORTERM_EFFECTS["No Adrenaline"].effect_time <= 0 then
 
             PLAYER.SHORTERM_EFFECTS["No Adrenaline"] = nil
