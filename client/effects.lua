@@ -67,6 +67,24 @@ local function adrenaline_effect()
 
 end
 
+local function knocked_out_effect()
+
+    if PLAYER.SHORTERM_EFFECTS["Knocked Out"] == nil then
+        return 0
+    end
+
+    if PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time = EFFECTS.KNOCKED_OUT.effect_time * 1000 then
+        DoScreenFadeOut(1000)
+    end
+
+    if PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time < 1500 then
+        if IsScreenFadedOut() then
+            DoScreenFadeIn(1000)
+        end
+    end
+
+end
+
 function debug_effects()
 
     assert(not (PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil and PLAYER.SHORTERM_EFFECTS["No Adrenaline"] ~= nil))
@@ -76,11 +94,8 @@ end
 function short_term_effects()
 
     adrenaline_effect()
+    knocked_out_effect()
     reduce_all_effect_times()
-
-end
-
-function long_term_effects()
 
 end
 
@@ -95,5 +110,11 @@ function apply_adrenaline()
     end
     
     apply_short_term_effect(EFFECTS.ADRENALINE)
+
+end
+
+function apply_knocked_out()
+
+    apply_short_term_effect("Knocked Out")
 
 end

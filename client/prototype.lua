@@ -32,8 +32,6 @@
 -- _GET_TIME_OF_LAST_PED_WEAPON_DAMAGE
 -- local retval = GetTimeOfLastPedWeaponDamage(ped, weaponHash)
 
-local ped = nil
-
 local function check_all_timed_damage()
 
     local temp_table = {}
@@ -93,7 +91,6 @@ local function effects_loop()
     debug_effects()
     calculate_player_modifiers()
     short_term_effects()
-    long_term_effects()
 
 end
 

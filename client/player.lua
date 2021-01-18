@@ -15,6 +15,8 @@ PLAYER_MODIFIERS = {
 
 }
 
+ped = nil
+
 function pain_level_modifier(modifier)
 
     PLAYER_MODIFIERS.PAIN_LEVEL = PLAYER_MODIFIERS.PAIN_LEVEL + modifier * PLAYER_MODIFIERS.PAIN_LEVEL
