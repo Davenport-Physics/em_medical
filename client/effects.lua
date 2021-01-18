@@ -57,10 +57,18 @@ local function adrenaline_effect()
 
     if PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil then
 
+        if PLAYER.SHORTERM_EFFECTS["Adrenaline"].effect_time == EFFECTS.ADRENALINE.effect_time * 1000 then
+            AnimpostfxPlay("FocusIn", 500, false)
+        end
+
         pain_level_set(0)
 
     elseif PLAYER.SHORTERM_EFFECTS["No Adrenaline"] ~= nil then
 
+        if PLAYER.SHORTERM_EFFECTS["No Adrenaline"].effect_time == EFFECTS.NO_ADRENALINE.effect_time * 1000 then
+            AnimpostfxStop("FocusIn")
+            AnimpostfxPlay("FocusOut", 500, false)
+        end
         pain_level_modifier(0.20)
 
     end

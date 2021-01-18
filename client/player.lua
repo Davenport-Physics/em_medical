@@ -73,7 +73,27 @@ end
 
 local function apply_stimulant_modifier()
 
-    SetRunSprintMultiplierForPlayer(PlayerId(), 1.0 + PLAYER_MODIFIERS.STIMULANT_LEVEL/20.0)
+
+end
+
+local function apply_depressant_modifier()
+
+end
+
+local function apply_sprint_modifier()
+
+    local run_multiplier = PLAYER_MODIFIERS.STIMULANT_LEVEL/20.0 - PLAYER_MODIFIERS.DEPRESSANTS_LEVEL/15.0
+    if run_multiplier > 0.49 then
+        run_multiplier = 0.49
+    end
+
+    SetRunSprintMultiplierForPlayer(PlayerId(), 1.0 + run_multiplier)
+
+end
+
+local function apply_shared_modifier()
+
+    apply_sprint_modifier()
 
 end
 
@@ -108,5 +128,7 @@ end
 function apply_player_modifiers()
 
     apply_stimulant_modifier()
+    apply_depressant_modifier()
+    apply_shared_modifier()
 
 end
