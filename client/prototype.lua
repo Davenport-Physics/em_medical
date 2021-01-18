@@ -150,6 +150,12 @@ RegisterCommand("give_effect", function (source, args, raw)
     apply_adrenaline()
 
 end)
+
+RegisterCommand("give_knocked_out", function (source, args, raw)
+
+    apply_knocked_out()
+
+end)
     
 
 RegisterCommand("clear_wounds", function (source, args, raw)

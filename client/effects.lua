@@ -73,13 +73,14 @@ local function knocked_out_effect()
         return 0
     end
 
-    if PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time = EFFECTS.KNOCKED_OUT.effect_time * 1000 then
+    if PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time == EFFECTS.KNOCKED_OUT.effect_time * 1000 then
         DoScreenFadeOut(1000)
+        SetPedToRagdollWithFall(ped, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
     end
 
     if PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time < 1500 then
         if IsScreenFadedOut() then
-            DoScreenFadeIn(1000)
+            DoScreenFadeIn(1500)
         end
     end
 
@@ -115,6 +116,6 @@ end
 
 function apply_knocked_out()
 
-    apply_short_term_effect("Knocked Out")
+    apply_short_term_effect(EFFECTS.KNOCKED_OUT)
 
 end
