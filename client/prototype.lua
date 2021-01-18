@@ -97,6 +97,8 @@ end
 
 local function bandage_loop()
 
+    --calculate_blood_loss()
+
 end
 
 local function start_damage_loop()
@@ -155,6 +157,12 @@ end)
 RegisterCommand("give_knocked_out", function (source, args, raw)
 
     apply_knocked_out()
+
+end)
+
+RegisterCommand("give_shock", function (source, args, raw)
+
+    apply_shock()
 
 end)
     

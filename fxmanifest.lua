@@ -12,5 +12,6 @@ client_scripts {
     'client/wounds.lua',
     'client/effects.lua',
     'client/player.lua',
-    'client/libs.lua'
+    'client/libs.lua',
+    'client/blood.lua'
 }
