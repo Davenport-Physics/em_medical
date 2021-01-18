@@ -50,10 +50,8 @@ local function damage_loop()
     for i = 1, #WEAPON_HASHES do
         local retval = GetTimeOfLastPedWeaponDamage(ped, WEAPON_HASHES[i][2])
         if GetGameTimer() - retval < 2 then
-            print("here")
             local _, out_bone = GetPedLastDamageBone(ped)
             if out_bone ~= 0 then
-                print("over here")
                 apply_weapon_damage(out_bone, i)
                 break
             end
@@ -103,6 +101,7 @@ local function start_long_loop()
             check_wound_heal_time()
             bandage_loop()
             effects_loop()
+            body_part_cleanup()
             Citizen.Wait(100)
 
         end

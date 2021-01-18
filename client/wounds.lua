@@ -12,7 +12,12 @@ local function add_wound(bone_idx, wound_type, amount)
 		PLAYER.WOUNDS[bone_name][wound_type.name] = {amount = 0, heal_time = wound_type.heal_time * 1000, last_update_time = GetGameTimer()}
 	end
 	
+	if PLAYER.WOUNDS[bone_name][wound_type.name].amount == 5 then
+		return 0
+	end
+
 	PLAYER.WOUNDS[bone_name][wound_type.name].amount = PLAYER.WOUNDS[bone_name][wound_type.name].amount + amount_to_add
+	PLAYER.WOUNDS[bone_name][wound_type.name].last_update_time = GetGameTimer()
 
 	if PLAYER.WOUNDS[bone_name][wound_type.name].amount > 5 then
 		PLAYER.WOUNDS[bone_name][wound_type.name].amount = 5
@@ -237,6 +242,16 @@ function check_wound_heal_time()
 
 		end
 
+	end
+
+end
+
+function body_part_cleanup()
+
+	for body_part, wounds in pairs(PLAYER.WOUNDS) do
+		if next(wounds) == nil then
+			PLAYER.WOUNDS[body_part] = nil
+		end
 	end
 
 end

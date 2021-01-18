@@ -5,6 +5,5 @@ PLAYER = {
     WOUNDS = {},
     BANDAGES = {},
     SHORTERM_EFFECTS = {},
-    LONGTERM_EFFECTS  = {},
     PERMANENT_EFFECTS = {}
 }

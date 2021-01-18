@@ -83,19 +83,19 @@ ITEMS = {
 		BLOOD_1000ML  = {name = "Blood 1000ml"},
 	},
 	MEDICATION = {
-		PARACETAMOL = {name = "Acetaminophen"},
-		ASPIRIN     = {name = "Aspirin"},
-		IBUPROFEN   = {name = "Ibuprofen"}
+		ACETAMINOPHEN = {name = "Acetaminophen"},
+		ASPIRIN       = {name = "Aspirin"},
+		IBUPROFEN     = {name = "Ibuprofen"}
 	}
 
 }
 
-SHORT_TERM_EFFECTS = {
+EFFECTS = {
 
-	SHOCK         = "Shock",
-	ADRENALINE    = "Adrenaline",
-	NO_ADRENALINE = "No Adrenaline",
-	FATIGUE       = "Fatigue"
+	SHOCK         = {name = "Shock"        , effect_time = 60*15},
+	ADRENALINE    = {name = "Adrenaline"   , effect_time = 60*2, end_to = "No Adrenaline"},
+	NO_ADRENALINE = {name = "No Adrenaline", effect_time = 60*5},
+	FATIGUE       = {name = "Fatigue"      , effect_time = 60*5}
 
 }
 
@@ -122,7 +122,7 @@ WEAPON_TYPES = {
 	DROWNING             = 20,
 	MILD_IRRITANT        = 21,
 	IRRITANT             = 22,
-	SEVERE_IRRITANT      = 22
+	SEVERE_IRRITANT      = 23
 }
 
 WEAPON_HASHES = {
