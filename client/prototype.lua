@@ -17,13 +17,6 @@
 13=gas  
 14=water cannon(WEAPON_HIT_BY_WATER_CANNON)  
 
-]]
-
---[[
-    local retval, outBone = GetPedLastDamageBone(ped)
-]]
--- pastebin.com/3pz17QGd
-
 -- BOOL HAS_PED_BEEN_DAMAGED_BY_WEAPON(Ped ped, Hash weaponHash, int weaponType);
 --[[
     It determines what weapons caused damage:  
@@ -31,10 +24,6 @@
     If you want to define any melee weapon, second parameter=0, third parameter=1.  
     If you want to identify any weapon (firearms, melee, rockets, etc.), second parameter=0, third parameter=2.
 ]]
-
-
--- GetTimeOfLastPedWeaponDamage
--- int _GET_TIME_OF_LAST_PED_WEAPON_DAMAGE(Ped ped, Any weaponHash);
 
 -- BOOL IS_PED_MALE(Ped ped);
 -- BOOL IS_PED_RAGDOLL(Ped ped);
@@ -50,11 +39,16 @@ local function damage_loop()
     for i = 1, #WEAPON_HASHES do
         local retval = GetTimeOfLastPedWeaponDamage(ped, WEAPON_HASHES[i][2])
         if GetGameTimer() - retval < 2 then
+
             local _, out_bone = GetPedLastDamageBone(ped)
             if out_bone ~= 0 then
                 apply_weapon_damage(out_bone, i)
                 break
+            else
+                attempt_to_apply_weapon_type_damage(i)
+                break
             end
+
         end
     end
 
@@ -64,7 +58,7 @@ end
 local function effects_loop()
 
     debug_effects()
-    calculate_pain()
+    calculate_player_modifiers()
     short_term_effects()
     long_term_effects()
 
@@ -117,6 +111,7 @@ start_long_loop()
 RegisterCommand("check_player", function (source, args, raw)
 
     print(json.encode(PLAYER))
+    print(json.encode(PLAYER_MODIFIERS))
 
 end)
 

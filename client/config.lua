@@ -21,10 +21,14 @@ CHECKED_BONES = {
     {name = "SKEL_Neck_1", hash = 0x9995 },
     {name = "SKEL_Head", hash = 0x796E },
     {name = "SPR_L_Breast", hash = 0xFC8E },
-	{name = "SPR_R_Breast", hash = 0x885F }
+	{name = "SPR_R_Breast", hash = 0x885F },
+	{name = "SKEL_Spine0", hash = 0x5C01},
+	{name = "SKEL_Spine1", hash = 0x60F0},
+	{name = "SKEL_Spine2", hash = 0x60F1},
+	{name = "SKEL_Spine3", hash = 0x60F2},
 }
 
-PAIN_THRESHOLD_BEFORE_SHOCK = 50
+PAIN_THRESHOLD_BEFORE_SHOCK = 30
 
 WOUND_TYPES = {
 	SMALL_CONTUSION      = {name = "Small Contusion"         , pain_level = 0, bleeding = 0, heal_time = 1200},
@@ -93,7 +97,7 @@ ITEMS = {
 EFFECTS = {
 
 	SHOCK         = {name = "Shock"        , effect_time = 60*15},
-	ADRENALINE    = {name = "Adrenaline"   , effect_time = 60*2, end_to = "No Adrenaline"},
+	ADRENALINE    = {name = "Adrenaline"   , modifier = {stimulant = 2}, effect_time = 60*2, end_to = "No Adrenaline"},
 	NO_ADRENALINE = {name = "No Adrenaline", effect_time = 60*5},
 	FATIGUE       = {name = "Fatigue"      , effect_time = 60*5}
 

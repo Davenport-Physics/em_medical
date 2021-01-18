@@ -9,7 +9,11 @@ local function add_wound(bone_idx, wound_type, amount)
 	end
 
 	if PLAYER.WOUNDS[bone_name][wound_type.name] == nil then
-		PLAYER.WOUNDS[bone_name][wound_type.name] = {amount = 0, heal_time = wound_type.heal_time * 1000, last_update_time = GetGameTimer()}
+		PLAYER.WOUNDS[bone_name][wound_type.name] = {amount = 0}
+		if wound_type.heal_time ~= nil then
+			PLAYER.WOUNDS[bone_name][wound_type.name].heal_time = wound_type.heal_time * 1000
+			PLAYER.WOUNDS[bone_name][wound_type.name].last_update_time = GetGameTimer()
+		end
 	end
 	
 	if PLAYER.WOUNDS[bone_name][wound_type.name].amount == 5 then
@@ -211,6 +215,28 @@ function apply_weapon_damage(out_bone, weapon_idx)
         end
 
     end
+
+end
+
+function attempt_to_apply_weapon_type_damage(weapon_idx)
+
+	if WEAPON_HASHES[weapon_idx][1] == "WEAPON_RUN_OVER_BY_CAR" then
+
+		print("Applying WEAPON_RUN_OVER_BY_CAR")
+		apply_vehicle(12, nil)
+		apply_vehicle(13, nil)
+
+		apply_vehicle(15, nil)
+		apply_vehicle(16, nil)
+
+	elseif WEAPON_HASHES[weapon_idx][1] == "WEAPON_RAMMED_BY_CAR" then
+
+		print("Applying WEAPON_RAMMED_BY_CAR")
+		apply_vehicle(17, nil)
+		apply_vehicle(20, nil)
+		apply_vehicle(21, nil)
+
+	end
 
 end
 

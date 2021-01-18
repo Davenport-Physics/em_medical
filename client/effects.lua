@@ -16,12 +16,6 @@ local function apply_short_term_effect(effect)
 
 end
 
-local function pain_modifier(modifier)
-
-    PLAYER.PAIN_LEVEL = PLAYER.PAIN_LEVEL + modifier * PLAYER.PAIN_LEVEL
-
-end
-
 local function reduce_effect_time(effect)
 
     local effect_vec = PLAYER.SHORTERM_EFFECTS[effect]
@@ -59,45 +53,15 @@ local function reduce_all_effect_times()
 
 end
 
-local function get_wound_pain(wound, wound_amount)
-
-    for _, wound_info in pairs(WOUND_TYPES) do
-        
-        if wound_info.name == wound then
-
-            return wound_info.pain_level * wound_amount
-
-        end
-
-    end
-    return 0
-
-end
-
-function calculate_pain()
-
-    PLAYER.PAIN_LEVEL = 0
-    for _, wounds in pairs(PLAYER.WOUNDS) do
-        
-        for wound, wound_info in pairs(wounds) do
-            
-            PLAYER.PAIN_LEVEL = PLAYER.PAIN_LEVEL + get_wound_pain(wound, wound_info.amount)
-
-        end
-
-    end
-
-end
-
 local function adrenaline_effect()
 
     if PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil then
 
-        PLAYER.PAIN_LEVEL = 0
+        pain_level_set(0)
 
     elseif PLAYER.SHORTERM_EFFECTS["No Adrenaline"] ~= nil then
 
-        pain_modifier(0.20)
+        pain_level_modifier(0.20)
 
     end
 
