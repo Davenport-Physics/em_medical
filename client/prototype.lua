@@ -90,6 +90,7 @@ local function effects_loop()
 
     debug_effects()
     calculate_player_modifiers()
+    apply_player_modifiers()
     short_term_effects()
 
 end
@@ -145,7 +146,7 @@ RegisterCommand("check_player", function (source, args, raw)
 
 end)
 
-RegisterCommand("give_effect", function (source, args, raw)
+RegisterCommand("give_adrenaline", function (source, args, raw)
 
     apply_adrenaline()
 

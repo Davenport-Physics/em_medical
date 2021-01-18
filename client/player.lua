@@ -67,10 +67,15 @@ local function get_modifier_level(effect_info, modifier_name)
         return 0
     end
 
-    return effect_info.modifiers["stimulant"] or 0
+    return effect_info.modifiers[modifier_name] or 0
 
 end
 
+local function apply_stimulant_modifier()
+
+    SetRunSprintMultiplierForPlayer(PlayerId(), 1.0 + PLAYER_MODIFIERS.STIMULANT_LEVEL/20.0)
+
+end
 
 function calculate_stimulatant_depressant_level()
 
@@ -78,7 +83,7 @@ function calculate_stimulatant_depressant_level()
     PLAYER_MODIFIERS.DEPRESSANTS_LEVEL = 0
     for effect_name, _ in pairs(PLAYER.SHORTERM_EFFECTS) do
         
-        for _, effect_info in pairs(EFFECTS) do
+        for __, effect_info in pairs(EFFECTS) do
             
             if effect_name == effect_info.name then
 
@@ -97,5 +102,11 @@ function calculate_player_modifiers()
 
     calculate_pain_level()
     calculate_stimulatant_depressant_level()
+
+end
+
+function apply_player_modifiers()
+
+    apply_stimulant_modifier()
 
 end

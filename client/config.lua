@@ -99,7 +99,7 @@ ITEMS = {
 EFFECTS = {
 
 	SHOCK           = {name = "Shock"        , effect_time = 60*15},
-	ADRENALINE      = {name = "Adrenaline"   , modifier = {stimulant = 2}, effect_time = 60*2, end_to = "No Adrenaline"},
+	ADRENALINE      = {name = "Adrenaline"   , modifiers = {stimulant = 2}, effect_time = 60*2, end_to = "No Adrenaline"},
 	NO_ADRENALINE   = {name = "No Adrenaline", effect_time = 60*5},
 	FATIGUE         = {name = "Fatigue"      , effect_time = 60*5},
 	KNOCKED_OUT     = {name = "Knocked Out"  , effect_time = 15},
