@@ -29,134 +29,134 @@ local function add_wound(bone_idx, wound_type, amount)
 
 end
 
-local function apply_hand_damage(bone_idx, weapon_idx)
+local function apply_hand_damage(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.SMALL_CONTUSION, 2)
 
 end
 
-local function apply_mild_blunt(bone_idx, weapon_idx)
+local function apply_mild_blunt(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.CONTUSION, 2)
 
 end
 
-local function apply_severe_blunt(bone_idx, weapon_idx)
+local function apply_severe_blunt(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.LACERATION, 1)
 	add_wound(bone_idx, WOUND_TYPES.LARGE_CONTUSION, 2)
 
 end
 
-local function apply_sharp(bone_idx, weapon_idx)
+local function apply_sharp(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.PUNCTURE_WOUND)
 
 end
 
-local function apply_severe_sharp(bone_idx, weapon_idx)
+local function apply_severe_sharp(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
 
 end
 
-local function apply_small_caliber_round(bone_idx, weapon_idx)
+local function apply_small_caliber_round(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.SMALL_GUN_SHOT)
 	add_wound(bone_idx, WOUND_TYPES.SMALL_GUN_SHOT_EXIT)
 
 end
 
-local function apply_medium_caliber_round(bone_idx, weapon_idx)
+local function apply_medium_caliber_round(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
 	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT)
 
 end
 
-local function apply_large_caliber_round(bone_idx, weapon_idx)
+local function apply_large_caliber_round(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.LARGE_GUN_SHOT)
 	add_wound(bone_idx, WOUND_TYPES.LARGE_GUN_SHOT_EXIT)
 
 end
 
-local function apply_less_lethal(bone_idx, weapon_idx)
+local function apply_less_lethal(bone_idx, weapon)
 
 end
 
-local function apply_fire(bone_idx, weapon_idx)
+local function apply_fire(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.SECOND_DEGREE_BURN)
 
 end
 
-local function apply_teeth(bone_idx, weapon_idx)
+local function apply_teeth(bone_idx, weapon)
 
 end
 
-local function apply_hand(bone_idx, weapon_idx)
+local function apply_hand(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.SMALL_CONTUSION)
 	add_wound(bone_idx, WOUND_TYPES.SMALL_LACERATION)
 
 end
 
-local function apply_arrow(bone_idx, weapon_idx)
+local function apply_arrow(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
 
 end
 
-local function apply_severe_arrow(bone_idx, weapon_idx)
+local function apply_severe_arrow(bone_idx, weapon)
 
 end
 
-local function apply_explosion(bone_idx, weapon_idx)
+local function apply_explosion(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.SECOND_DEGREE_BURN)
 	add_wound(bone_idx, WOUND_TYPES.LARGE_LACERATION, 2)
 
 end
 
-local function apply_shotgun_shell(bone_idx, weapon_idx)
+local function apply_shotgun_shell(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
 
 end
 
-local function apply_severe_shotgun_shell(bone_idx, weapon_idx)
+local function apply_severe_shotgun_shell(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
 
 end
 
-local function apply_vehicle(bone_idx, weapon_idx)
+local function apply_vehicle(bone_idx, weapon)
 	
 	add_wound(bone_idx, WOUND_TYPES.LACERATION, 3)
 	add_wound(bone_idx, WOUND_TYPES.CONTUSION, 2)
 
 end
 
-local function apply_fall(bone_idx, weapon_idx)
+local function apply_fall(bone_idx, weapon)
 
 	add_wound(bone_idx, WOUND_TYPES.LARGE_CONTUSION)
 
 end
 
-local function apply_drowning(bone_idx, weapon_idx)
+local function apply_drowning(bone_idx, weapon)
 
 end
 
-local function apply_mild_irritant(bone_idx, weapon_idx)
+local function apply_mild_irritant(bone_idx, weapon)
 
 end
 
-local function apply_irritant(bone_idx, weapon_idx)
+local function apply_irritant(bone_idx, weapon)
 
 end
 
-local function apply_severe_irritant(bone_idx, weapon_idx)
+local function apply_severe_irritant(bone_idx, weapon)
 
 end
 
@@ -189,7 +189,7 @@ local WEAPON_TYPE_FUNCTIONS =
 
 }
 
-function apply_weapon_damage(out_bone, weapon_idx)
+function apply_weapon_damage(out_bone, weapon)
 
     local bone_idx = nil
     for i = 1, #CHECKED_BONES do
@@ -208,9 +208,9 @@ function apply_weapon_damage(out_bone, weapon_idx)
 
     for i = 1, #WEAPON_TYPE_FUNCTIONS do
 
-		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == WEAPON_HASHES[weapon_idx][3] then
+		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == weapon.weapon_type then
 			apply_adrenaline()
-            WEAPON_TYPE_FUNCTIONS[i].func(bone_idx, weapon_idx)
+            WEAPON_TYPE_FUNCTIONS[i].func(bone_idx, weapon)
             break
         end
 
@@ -218,9 +218,9 @@ function apply_weapon_damage(out_bone, weapon_idx)
 
 end
 
-function attempt_to_apply_weapon_type_damage(weapon_idx)
+function attempt_to_apply_weapon_type_damage(weapon)
 
-	if WEAPON_HASHES[weapon_idx][1] == "WEAPON_RUN_OVER_BY_CAR" then
+	if weapon.name == "WEAPON_RUN_OVER_BY_CAR" then
 
 		print("Applying WEAPON_RUN_OVER_BY_CAR")
 		apply_vehicle(12, nil)
@@ -229,12 +229,18 @@ function attempt_to_apply_weapon_type_damage(weapon_idx)
 		apply_vehicle(15, nil)
 		apply_vehicle(16, nil)
 
-	elseif WEAPON_HASHES[weapon_idx][1] == "WEAPON_RAMMED_BY_CAR" then
+	elseif weapon.name == "WEAPON_RAMMED_BY_CAR" then
 
 		print("Applying WEAPON_RAMMED_BY_CAR")
 		apply_vehicle(17, nil)
 		apply_vehicle(20, nil)
 		apply_vehicle(21, nil)
+
+	elseif weapon.name == "WEAPON_UNARMED" then
+
+		apply_hand(15, nil)
+		apply_hand(16, nil)
+		apply_hand(17, nil)
 
 	end
 

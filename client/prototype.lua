@@ -34,23 +34,56 @@
 
 local ped = nil
 
-local function damage_loop()
+local function check_all_timed_damage()
 
+    local temp_table = {}
     for i = 1, #WEAPON_HASHES do
         local retval = GetTimeOfLastPedWeaponDamage(ped, WEAPON_HASHES[i][2])
-        if GetGameTimer() - retval < 2 then
-
-            local _, out_bone = GetPedLastDamageBone(ped)
-            if out_bone ~= 0 then
-                apply_weapon_damage(out_bone, i)
-                break
-            else
-                attempt_to_apply_weapon_type_damage(i)
-                break
-            end
-
+        if GetGameTimer() - retval < 20 then
+            table.insert(temp_table, WEAPON_HASHES[i][1])
         end
     end
+    if #temp_table > 0 then
+        print("timed: " .. json.encode(temp_table))
+    end
+
+end
+
+local function check_all_damage()
+
+    local temp_table = {}
+    for i = 1, #WEAPON_HASHES do
+        local retval = HasEntityBeenDamagedByWeapon(ped, WEAPON_HASHES[i].hash, 0)
+        if retval then
+            table.insert(temp_table, WEAPON_HASHES[i])
+        end
+    end
+    if #temp_table > 0 then
+        print("All damage :" .. json.encode(temp_table))
+    end
+
+    return temp_table
+
+end
+
+local function damage_loop()
+
+    local weapons = check_all_damage()
+    local _, out_bone = GetPedLastDamageBone(ped)
+
+    for i = 1, #weapons do
+
+        if out_bone ~= 0 then
+            apply_weapon_damage(out_bone, weapons[i])
+            break
+        else
+            attempt_to_apply_weapon_type_damage(weapons[i])
+            break
+        end
+
+    end
+    ClearEntityLastDamageEntity(ped)
+    ClearEntityLastWeaponDamage(ped)
 
 end
 
