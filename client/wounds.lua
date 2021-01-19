@@ -13,30 +13,30 @@ end
 
 local function add_wound(bone, wound_type, amount)
 
-	local bone_name = bone.name
 	local amount_to_add = amount or 1
+	local bone_part = bone.general_body_part
 
-	if PLAYER.WOUNDS[bone_name] == nil then
-		PLAYER.WOUNDS[bone_name] = {}
+	if PLAYER.WOUNDS[bone_part] == nil then
+		PLAYER.WOUNDS[bone_part] = {}
 	end
 
-	if PLAYER.WOUNDS[bone_name][wound_type.name] == nil then
-		PLAYER.WOUNDS[bone_name][wound_type.name] = {amount = 0}
+	if PLAYER.WOUNDS[bone_part][wound_type.name] == nil then
+		PLAYER.WOUNDS[bone_part][wound_type.name] = {amount = 0}
 		if wound_type.heal_time ~= nil then
-			PLAYER.WOUNDS[bone_name][wound_type.name].heal_time = wound_type.heal_time * 1000
-			PLAYER.WOUNDS[bone_name][wound_type.name].last_update_time = GetGameTimer()
+			PLAYER.WOUNDS[bone_part][wound_type.name].heal_time = wound_type.heal_time * 1000
+			PLAYER.WOUNDS[bone_part][wound_type.name].last_update_time = GetGameTimer()
 		end
 	end
 	
-	if PLAYER.WOUNDS[bone_name][wound_type.name].amount == 5 then
+	if PLAYER.WOUNDS[bone_part][wound_type.name].amount == 10 then
 		return 0
 	end
 
-	PLAYER.WOUNDS[bone_name][wound_type.name].amount = PLAYER.WOUNDS[bone_name][wound_type.name].amount + amount_to_add
-	PLAYER.WOUNDS[bone_name][wound_type.name].last_update_time = GetGameTimer()
+	PLAYER.WOUNDS[bone_part][wound_type.name].amount = PLAYER.WOUNDS[bone_part][wound_type.name].amount + amount_to_add
+	PLAYER.WOUNDS[bone_part][wound_type.name].last_update_time = GetGameTimer()
 
-	if PLAYER.WOUNDS[bone_name][wound_type.name].amount > 5 then
-		PLAYER.WOUNDS[bone_name][wound_type.name].amount = 5
+	if PLAYER.WOUNDS[bone_part][wound_type.name].amount > 10 then
+		PLAYER.WOUNDS[bone_part][wound_type.name].amount = 10
 	end
 
 end

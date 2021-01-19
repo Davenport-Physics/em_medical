@@ -132,3 +132,11 @@ function apply_player_modifiers()
     apply_shared_modifier()
 
 end
+
+function check_to_down_player() 
+
+    if PLAYER_MODIFIERS.PAIN_LEVEL >= PAIN_THRESHOLD_BEFORE_SHOCK then
+        apply_shock()
+    end
+
+end

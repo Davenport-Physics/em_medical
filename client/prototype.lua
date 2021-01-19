@@ -92,6 +92,7 @@ local function effects_loop()
     calculate_player_modifiers()
     apply_player_modifiers()
     short_term_effects()
+    check_to_down_player()
 
 end
 
@@ -125,6 +126,7 @@ local function start_long_loop()
         Citizen.Wait(0)
         while true do
 
+            --print(GetEntityHealth(ped))
             check_wound_heal_time()
             bandage_loop()
             effects_loop()

@@ -48,6 +48,7 @@ end)
 
 register_effect_function(EFFECTS.SHOCK, "loop", function() 
 
+    pain_level_set(0)
     if not DoesEntityExist(GetVehiclePedIsIn(ped, false)) and not IsEntityPlayingAnim(ped, "missarmenian2", "corpse_search_exit_ped", 2) then
         TaskPlayAnim(ped, "missarmenian2", "corpse_search_exit_ped", 100.0, -100.0, -1, 2, 1.0, false, false, false)
     end
