@@ -10,7 +10,8 @@ client_scripts {
     'client/prototype.lua',
     'client/config.lua',
     'client/wounds.lua',
-    'client/effects.lua',
+    'client/effects/effects_core.lua'
+    'client/effects/effects.lua',
     'client/player.lua',
     'client/libs.lua',
     'client/blood.lua'
