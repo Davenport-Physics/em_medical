@@ -136,7 +136,7 @@ end
 
 local function apply_shotgun_shell(bone, weapon)
 
-	add_wound(bone_idx, WOUND_TYPES.MEDIUM_GUN_SHOT)
+	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
 
 end
 
