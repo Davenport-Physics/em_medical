@@ -22,7 +22,7 @@ end)
 
 register_effect_function(EFFECTS.ADRENALINE, "loop", function() 
 
-    pain_level_set(0)
+    pain_level_modifier(-0.8)
 
 end)
 
