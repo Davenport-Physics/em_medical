@@ -60,3 +60,21 @@ register_effect_function(EFFECTS.SHOCK, "outro", function()
     ClearPedTasksImmediately(ped)
 
 end)
+
+register_effect_function(EFFECTS.LIMPING, "intro", function() 
+
+
+
+end)
+
+register_effect_function(EFFECTS.LIMPING, "loop", function() 
+
+
+
+end)
+
+register_effect_function(EFFECTS.LIMPING, "outro", function() 
+
+
+
+end)

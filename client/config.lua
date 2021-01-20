@@ -17,18 +17,18 @@ CHECKED_BONES = {
 	SKEL_L_Calf     = {name = "SKEL_L_Calf"    , hash = 0xF9BB, general_body_part = GENERAL_BODY_PARTS.L_LEG},
 	SKEL_L_Foot     = {name = "SKEL_L_Foot"    , hash = 0x3779, general_body_part = GENERAL_BODY_PARTS.L_LEG},
     SKEL_L_Toe0     = {name = "SKEL_L_Toe0"    , hash = 0x83C , general_body_part = GENERAL_BODY_PARTS.L_LEG},
-    SKEL_R_Thigh    = {name = "SKEL_R_Thigh"   , hash = 0xCA72, general_body_part = GENERAL_BODY_PARTS.R_LEG },
-	SKEL_R_Calf     = {name = "SKEL_R_Calf"    , hash = 0x9000, general_body_part = GENERAL_BODY_PARTS.R_LEG },
-	SKEL_R_Foot     = {name = "SKEL_R_Foot"    , hash = 0xCC4D, general_body_part = GENERAL_BODY_PARTS.R_LEG },
-	SKEL_R_Toe0     = {name = "SKEL_R_Toe0"    , hash = 0x512D, general_body_part = GENERAL_BODY_PARTS.R_LEG },
+    SKEL_R_Thigh    = {name = "SKEL_R_Thigh"   , hash = 0xCA72, general_body_part = GENERAL_BODY_PARTS.R_LEG},
+	SKEL_R_Calf     = {name = "SKEL_R_Calf"    , hash = 0x9000, general_body_part = GENERAL_BODY_PARTS.R_LEG},
+	SKEL_R_Foot     = {name = "SKEL_R_Foot"    , hash = 0xCC4D, general_body_part = GENERAL_BODY_PARTS.R_LEG},
+	SKEL_R_Toe0     = {name = "SKEL_R_Toe0"    , hash = 0x512D, general_body_part = GENERAL_BODY_PARTS.R_LEG},
 	SKEL_L_Clavicle = {name = "SKEL_L_Clavicle", hash = 0xFCD9, general_body_part = GENERAL_BODY_PARTS.L_ARM},
-	SKEL_L_UpperArm = {name = "SKEL_L_UpperArm", hash = 0xB1C5, general_body_part = GENERAL_BODY_PARTS.L_ARM },
-	SKEL_L_Forearm  = {name = "SKEL_L_Forearm" , hash = 0xEEEB, general_body_part = GENERAL_BODY_PARTS.L_ARM },
-    SKEL_L_Hand     = {name = "SKEL_L_Hand"    , hash = 0x49D9, general_body_part = GENERAL_BODY_PARTS.L_ARM },
-    SKEL_R_Clavicle = {name = "SKEL_R_Clavicle", hash = 0x29D2, general_body_part = GENERAL_BODY_PARTS.R_ARM },
-	SKEL_R_UpperArm = {name = "SKEL_R_UpperArm", hash = 0x9D4D, general_body_part = GENERAL_BODY_PARTS.R_ARM },
-	SKEL_R_Forearm  = {name = "SKEL_R_Forearm" , hash = 0x6E5C, general_body_part = GENERAL_BODY_PARTS.R_ARM },
-    SKEL_R_Hand     = {name = "SKEL_R_Hand"    , hash = 0xDEAD, general_body_part = GENERAL_BODY_PARTS.R_ARM },
+	SKEL_L_UpperArm = {name = "SKEL_L_UpperArm", hash = 0xB1C5, general_body_part = GENERAL_BODY_PARTS.L_ARM},
+	SKEL_L_Forearm  = {name = "SKEL_L_Forearm" , hash = 0xEEEB, general_body_part = GENERAL_BODY_PARTS.L_ARM},
+    SKEL_L_Hand     = {name = "SKEL_L_Hand"    , hash = 0x49D9, general_body_part = GENERAL_BODY_PARTS.L_ARM},
+    SKEL_R_Clavicle = {name = "SKEL_R_Clavicle", hash = 0x29D2, general_body_part = GENERAL_BODY_PARTS.R_ARM},
+	SKEL_R_UpperArm = {name = "SKEL_R_UpperArm", hash = 0x9D4D, general_body_part = GENERAL_BODY_PARTS.R_ARM},
+	SKEL_R_Forearm  = {name = "SKEL_R_Forearm" , hash = 0x6E5C, general_body_part = GENERAL_BODY_PARTS.R_ARM},
+    SKEL_R_Hand     = {name = "SKEL_R_Hand"    , hash = 0xDEAD, general_body_part = GENERAL_BODY_PARTS.R_ARM},
     SKEL_Neck_1     = {name = "SKEL_Neck_1"    , hash = 0x9995, general_body_part = GENERAL_BODY_PARTS.HEAD},
     SKEL_Head       = {name = "SKEL_Head"      , hash = 0x796E, general_body_part = GENERAL_BODY_PARTS.HEAD},
     SPR_L_Breast    = {name = "SPR_L_Breast"   , hash = 0xFC8E, general_body_part = GENERAL_BODY_PARTS.CHEST},
@@ -65,7 +65,8 @@ WOUND_TYPES = {
 	INCISION             = {name = "Incision"                , pain_level = 5, bleeding = 3},
 	LARGE_INCISION       = {name = "Large Incision"          , pain_level = 6, bleeding = 5},
 	FRACTURE             = {name = "Fracture"                , pain_level = 3, bleeding = 0},
-	BULLET_FRAGMENTS     = {name = "Bullet Fragments"        , pain_level = 3, bleeding = 0}
+	BULLET_FRAGMENTS     = {name = "Bullet Fragments"        , pain_level = 3, bleeding = 0},
+	TASER_PRONGS         = {name = "Taser Prongs"            , pain_level = 1, bleeding = 0}
 }
 
 ITEMS = {
@@ -117,14 +118,14 @@ DAMAGE_SEVERITY_TYPES = {
 }
 
 EFFECTS = {
-
 	SHOCK           = {name = "Shock"        , effect_time = 60*15},
 	ADRENALINE      = {name = "Adrenaline"   , modifiers = {stimulant = 2}, effect_time = 60},
 	NO_ADRENALINE   = {name = "No Adrenaline", effect_time = 60*5},
 	FATIGUE         = {name = "Fatigue"      , effect_time = 60*5},
 	KNOCKED_OUT     = {name = "Knocked Out"  , effect_time = 15},
-	UNCONSCIOUS     = {name = "Unconscious"  , effect_time = 60*10}
-
+	UNCONSCIOUS     = {name = "Unconscious"  , effect_time = 60*10},
+	LIMPING         = {name = "Limping"      , effect_time = 60*2},
+	TAZED           = {name = "Tazed"        , effect_time = 60}
 }
 
 WEAPON_TYPES = {
