@@ -40,10 +40,6 @@ local function remove_or_change_effect(effect_name)
 
     local effect = get_effect_info(effect_name)
 
-    if effect.end_to ~= nil then
-        apply_short_term_effect(get_effect_info(effect.end_to))
-    end
-
     if effect.outro ~= nil then
         effect.outro()
     end
