@@ -66,6 +66,10 @@ end
 
 local function damage_loop()
 
+    if is_player_unconscious() then
+        return 0
+    end
+
     local weapons = check_all_damage()
     local _, out_bone = GetPedLastDamageBone(ped)
 
@@ -172,8 +176,8 @@ end)
 RegisterCommand("clear_wounds", function (source, args, raw)
 
     PLAYER.WOUNDS = {}
-    PLAYER.EFFECTS = {}
+    PLAYER.SHORTERM_EFFECTS = {}
+    ClearPedTasksImmediately(ped)
+    AnimpostfxStop("FocusIn")
 
 end)
-
-math.randomseed(os.time())

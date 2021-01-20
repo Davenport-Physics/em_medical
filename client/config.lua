@@ -37,9 +37,10 @@ CHECKED_BONES = {
 	SKEL_Spine1     = {name = "SKEL_Spine1"    , hash = 0x60F0, general_body_part = GENERAL_BODY_PARTS.BACK},
 	SKEL_Spine2     = {name = "SKEL_Spine2"    , hash = 0x60F1, general_body_part = GENERAL_BODY_PARTS.BACK},
 	SKEL_Spine3     = {name = "SKEL_Spine3"    , hash = 0x60F2, general_body_part = GENERAL_BODY_PARTS.BACK},
+	SKEL_Spine_Root = {name = "SKEL_Spine_Root", hash = 0xE0FD, general_body_part = GENERAL_BODY_PARTS.BACK},
 }
 
-PAIN_THRESHOLD_BEFORE_SHOCK = 30
+PAIN_THRESHOLD_BEFORE_SHOCK = 25
 
 WOUND_TYPES = {
 	SMALL_CONTUSION      = {name = "Small Contusion"         , pain_level = 0, bleeding = 0, heal_time = 1200},
@@ -54,13 +55,13 @@ WOUND_TYPES = {
 	SECOND_DEGREE_BURN   = {name = "Second Degree Burn"      , pain_level = 5, bleeding = 0, heal_time = 2400},
 	THIRD_DEGREE_BURN    = {name = "Third Degree Burn"       , pain_level = 1, bleeding = 0},
 	INFECTION            = {name = "Infection"               , pain_level = 0, bleeding = 0},
-	SMALL_GUN_SHOT       = {name = "Small Gun Shot Entrance" , pain_level = 3, bleeding = 1},
-	MEDIUM_GUN_SHOT      = {name = "Medium Gun Shot Entrance", pain_level = 5, bleeding = 2},
-	LARGE_GUN_SHOT       = {name = "Large Gun Shot Entrance" , pain_level = 6, bleeding = 3},
-	SMALL_GUN_SHOT_EXIT  = {name = "Small Gun Shot Exit"     , pain_level = 3, bleeding = 2},
-	MEDIUM_GUN_SHOT_EXIT = {name = "Medium Gun Shot Exit"    , pain_level = 5, bleeding = 3},
-	LARGE_GUN_SHOT_EXIT  = {name = "Large Gun Shot Exit"     , pain_level = 6, bleeding = 5},
-	BROKEN_BONE          = {name = "Broken Bone"             , pain_level = 4, bleeding = 0},
+	SMALL_GUN_SHOT       = {name = "Small Gun Shot Entrance" , pain_level = 5, bleeding = 1},
+	MEDIUM_GUN_SHOT      = {name = "Medium Gun Shot Entrance", pain_level = 7, bleeding = 2},
+	LARGE_GUN_SHOT       = {name = "Large Gun Shot Entrance" , pain_level = 9, bleeding = 3},
+	SMALL_GUN_SHOT_EXIT  = {name = "Small Gun Shot Exit"     , pain_level = 6, bleeding = 2},
+	MEDIUM_GUN_SHOT_EXIT = {name = "Medium Gun Shot Exit"    , pain_level = 8, bleeding = 3},
+	LARGE_GUN_SHOT_EXIT  = {name = "Large Gun Shot Exit"     , pain_level = 9, bleeding = 5},
+	BROKEN_BONE          = {name = "Broken Bone"             , pain_level = 6, bleeding = 0},
 	SMALL_INCISION       = {name = "Small Incision"          , pain_level = 3, bleeding = 2},
 	INCISION             = {name = "Incision"                , pain_level = 5, bleeding = 3},
 	LARGE_INCISION       = {name = "Large Incision"          , pain_level = 6, bleeding = 5},
@@ -88,16 +89,16 @@ ITEMS = {
 		ALCOHOL_PAD      = {name = "Alcohol Pad"}
 	},
 	INJECTABLES = {
-		MORPHINE      = {name = "Morphine"},
-		EPINEPHRINE   = {name = "Epinephrine"},
-		SALINE_250ML  = {name = "Saline 250ml"},
-		SALINE_500ML  = {name = "Saline 500ml"},
-		SALINE_750ML  = {name = "Saline 750ml"},
-		SALINE_1000ML = {name = "Saline 1000ml"},
-		BLOOD_250ML   = {name = "Blood 250ml"},
-		BLOOD_500ML   = {name = "Blood 500ml"},
-		BLOOD_750ML   = {name = "Blood 750ml"},
-		BLOOD_1000ML  = {name = "Blood 1000ml"},
+		MORPHINE      = {name = "Morphine"     , effect_time = 60*5},
+		EPINEPHRINE   = {name = "Epinephrine"  , effect_time = 60*1},
+		SALINE_250ML  = {name = "Saline 250ml" , effect_time = 60*1},
+		SALINE_500ML  = {name = "Saline 500ml" , effect_time = 60*2},
+		SALINE_750ML  = {name = "Saline 750ml" , effect_time = 60*3},
+		SALINE_1000ML = {name = "Saline 1000ml", effect_time = 60*4},
+		BLOOD_250ML   = {name = "Blood 250ml"  , effect_time = 60*1},
+		BLOOD_500ML   = {name = "Blood 500ml"  , effect_time = 60*2},
+		BLOOD_750ML   = {name = "Blood 750ml"  , effect_time = 60*3},
+		BLOOD_1000ML  = {name = "Blood 1000ml" , effect_time = 60*4},
 	},
 	MEDICATION = {
 		ACETAMINOPHEN = {name = "Acetaminophen"},
@@ -125,7 +126,30 @@ EFFECTS = {
 	KNOCKED_OUT     = {name = "Knocked Out"  , effect_time = 15},
 	UNCONSCIOUS     = {name = "Unconscious"  , effect_time = 60*10},
 	LIMPING         = {name = "Limping"      , effect_time = 60*2},
-	TAZED           = {name = "Tazed"        , effect_time = 60}
+	TAZED           = {name = "Tazed"        , effect_time = 60},
+	SHOCK          = {name = "Shock"        , effect_time = 60*15},
+	ADRENALINE     = {name = "Adrenaline"   , modifiers = {stimulant = 2}, effect_time = 30},
+	NO_ADRENALINE  = {name = "No Adrenaline", effect_time = 60*5},
+	FATIGUE        = {name = "Fatigue"      , effect_time = 60*5},
+	KNOCKED_OUT    = {name = "Knocked Out"  , effect_time = 15},
+	UNCONSCIOUS    = {name = "Unconscious"  , effect_time = 60*10},
+	LIMPING        = {name = "Limping"      , effect_time = 60*2},
+	TAZED          = {name = "Tazed"        , effect_time = 60},
+
+	MORPHINE      = ITEMS.INJECTABLES.MORPHINE,
+	EPINEPHRINE   = ITEMS.INJECTABLES.EPINEPHRINE,
+	SALINE_250ML  = ITEMS.INJECTABLES.SALINE_250ML,
+	SALINE_500ML  = ITEMS.INJECTABLES.SALINE_500ML,
+	SALINE_750ML  = ITEMS.INJECTABLES.SALINE_750ML,
+	SALINE_1000ML = ITEMS.INJECTABLES.SALINE_1000ML,
+	BLOOD_250ML   = ITEMS.INJECTABLES.BLOOD_250ML,
+	BLOOD_500ML   = ITEMS.INJECTABLES.BLOOD_500ML,
+	BLOOD_750ML   = ITEMS.INJECTABLES.BLOOD_750ML,
+	BLOOD_1000ML  = ITEMS.INJECTABLES.BLOOD_1000ML,
+
+	ACETAMINOPHEN = ITEMS.MEDICATION.ACETAMINOPHEN,
+	ASPIRIN       = ITEMS.MEDICATION.ASPIRIN,
+	IBUPROFEN     = ITEMS.MEDICATION.IBUPROFEN
 }
 
 WEAPON_TYPES = {

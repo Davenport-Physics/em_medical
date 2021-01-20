@@ -21,23 +21,18 @@ local function add_wound(bone, wound_type, amount)
 		PLAYER.WOUNDS[bone_part] = {}
 	end
 
-	if PLAYER.WOUNDS[bone_part][wound_type.name] == nil then
-		PLAYER.WOUNDS[bone_part][wound_type.name] = {amount = 0}
-		if wound_type.heal_time ~= nil then
-			PLAYER.WOUNDS[bone_part][wound_type.name].heal_time = wound_type.heal_time * 1000
-			PLAYER.WOUNDS[bone_part][wound_type.name].last_update_time = GetGameTimer()
+	for i = 1, amount_to_add do
+
+		if #PLAYER.WOUNDS[bone_part] >= 10 then
+			break
 		end
-	end
-	
-	if PLAYER.WOUNDS[bone_part][wound_type.name].amount == 10 then
-		return 0
-	end
 
-	PLAYER.WOUNDS[bone_part][wound_type.name].amount = PLAYER.WOUNDS[bone_part][wound_type.name].amount + amount_to_add
-	PLAYER.WOUNDS[bone_part][wound_type.name].last_update_time = GetGameTimer()
+		table.insert(PLAYER.WOUNDS[bone_part], {name = wound_type.name, bandages = {}})
+		if wound_type.heal_time ~= nil then
+			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].heal_time = wound_type.heal_time * 1000
+			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].last_update_time = GetGameTimer()
+		end
 
-	if PLAYER.WOUNDS[bone_part][wound_type.name].amount > 10 then
-		PLAYER.WOUNDS[bone_part][wound_type.name].amount = 10
 	end
 
 end
@@ -75,7 +70,10 @@ end
 
 local function chest_shot_and_has_body_armour(bone)
 
-	return bone.general_body_part == GENERAL_BODY_PARTS.CHEST and PLAYER_STATS.LAST_ARMOUR > 0
+	if bone.general_body_part == GENERAL_BODY_PARTS.CHEST or bone.general_body_part == GENERAL_BODY_PARTS.BACK then
+		return PLAYER_STATS.LAST_ARMOUR > 0
+	end
+	return false
 
 end
 
@@ -228,13 +226,13 @@ local function apply_fall(bone, weapon)
         
         add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
         add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 1)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 2)
 
     elseif hit_severity == DAMAGE_SEVERITY_TYPES.CRTICICAL then
         
-        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 2)
-        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 2)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE)
+        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 6)
+        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 5)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 4)
 
     end
 
@@ -318,7 +316,6 @@ function attempt_to_apply_weapon_type_damage(weapon)
 
 	if weapon.name == "WEAPON_RUN_OVER_BY_CAR" then
 
-		print("Applying WEAPON_RUN_OVER_BY_CAR")
 		apply_vehicle(CHECKED_BONES.SPR_L_Breast, nil)
 		apply_vehicle(CHECKED_BONES.SPR_R_Breast, nil)
 
@@ -327,7 +324,6 @@ function attempt_to_apply_weapon_type_damage(weapon)
 
 	elseif weapon.name == "WEAPON_RAMMED_BY_CAR" then
 
-		print("Applying WEAPON_RAMMED_BY_CAR")
 		apply_hand(CHECKED_BONES.SKEL_Head, nil)
 		apply_hand(CHECKED_BONES.SPR_L_Breast, nil)
 		apply_hand(CHECKED_BONES.SPR_R_Breast, nil)
@@ -342,31 +338,39 @@ function attempt_to_apply_weapon_type_damage(weapon)
 
 end
 
-local function wound_heal_time(body_part, wound, wound_info)
+local function wound_heal_time(body_part, wound)
 
-	if wound_info.heal_time == nil then
+	if wound.heal_time == nil then
 		return 0 
 	end
 
 	local current_time = GetGameTimer()
-	local dt = current_time - wound_info.last_update_time
+	local dt = current_time - wound.last_update_time
 
-	wound_info.heal_time        = wound_info.heal_time - dt
-	wound_info.last_update_time = current_time
-
-	if wound_info.heal_time <= 0 then
-		PLAYER.WOUNDS[body_part][wound] = nil
-	end
+	wound.heal_time        = wound.heal_time - dt
+	wound.last_update_time = current_time
 
 end
 
 function check_wound_heal_time()
 
+	if is_player_unconscious() then
+		return 0
+	end
+
 	for body_part, wounds in pairs(PLAYER.WOUNDS) do
 		
-		for wound, wound_info in pairs(wounds) do
+		for i = 1, #wounds do
 
-			wound_heal_time(body_part, wound, wound_info)
+			wound_heal_time(body_part, wounds[i])
+
+		end
+
+		for i = #wounds, 1, -1 do
+
+			if wounds[i].heal_time ~= nil and wounds[i].heal_time <= 0 then
+				table.remove(wounds, i)
+			end
 
 		end
 

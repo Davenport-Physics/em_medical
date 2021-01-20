@@ -2,7 +2,6 @@
 PLAYER = {
     BLOOD_PRESSURE = {systolic = 100, diastolic = 75},
     WOUNDS = {},
-    BANDAGES = {},
     SHORTERM_EFFECTS = {},
     PERMANENT_EFFECTS = {}
 }
@@ -14,8 +13,8 @@ PLAYER_MODIFIERS = {
 }
 
 PLAYER_STATS = {
-    HEALTH = 0,
-    ARMOUR = 0,
+    LAST_HEALTH = 0,
+    LAST_ARMOUR = 0,
     LAST_HEALTH_DIFF = 0,
     LAST_ARMOUR_DIFF = 0
 }
@@ -35,13 +34,13 @@ function pain_level_set(level)
 end
 
 
-local function get_wound_pain(wound, wound_amount)
+local function get_wound_pain(wound)
 
     for _, wound_info in pairs(WOUND_TYPES) do
         
-        if wound_info.name == wound then
+        if wound_info.name == wound.name then
 
-            return wound_info.pain_level * wound_amount
+            return wound_info.pain_level
 
         end
 
@@ -56,9 +55,9 @@ function calculate_pain_level()
     PLAYER_MODIFIERS.PAIN_LEVEL = 0
     for _, wounds in pairs(PLAYER.WOUNDS) do
         
-        for wound, wound_info in pairs(wounds) do
-            
-            PLAYER_MODIFIERS.PAIN_LEVEL = PLAYER_MODIFIERS.PAIN_LEVEL + get_wound_pain(wound, wound_info.amount)
+        for i = 1, #wounds do
+
+            PLAYER_MODIFIERS.PAIN_LEVEL = PLAYER_MODIFIERS.PAIN_LEVEL + get_wound_pain(wounds[i])
 
         end
 
@@ -179,7 +178,6 @@ function calculate_health_armour()
     PLAYER_STATS.LAST_HEALTH = current_health
     PLAYER_STATS.LAST_ARMOUR = current_armour
 
-
     SetEntityHealth(ped, 200)
 
 end
@@ -197,5 +195,11 @@ function check_to_down_player()
     if PLAYER_MODIFIERS.PAIN_LEVEL >= PAIN_THRESHOLD_BEFORE_SHOCK then
         apply_shock()
     end
+
+end
+
+function is_player_unconscious()
+
+    return PLAYER.SHORTERM_EFFECTS["Shock"] ~= nil or PLAYER.SHORTERM_EFFECTS["Unconscious"] ~= nil
 
 end
