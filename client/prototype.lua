@@ -172,5 +172,8 @@ end)
 RegisterCommand("clear_wounds", function (source, args, raw)
 
     PLAYER.WOUNDS = {}
+    PLAYER.EFFECTS = {}
 
 end)
+
+math.randomseed(os.time())

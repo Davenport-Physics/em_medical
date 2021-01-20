@@ -314,24 +314,24 @@ function attempt_to_apply_weapon_type_damage(weapon)
 	if weapon.name == "WEAPON_RUN_OVER_BY_CAR" then
 
 		print("Applying WEAPON_RUN_OVER_BY_CAR")
-		apply_vehicle(12, nil)
-		apply_vehicle(13, nil)
+		apply_vehicle(CHECKED_BONES.SPR_L_Breast, nil)
+		apply_vehicle(CHECKED_BONES.SPR_R_Breast, nil)
 
-		apply_vehicle(15, nil)
-		apply_vehicle(16, nil)
+		apply_vehicle(CHECKED_BONES.SKEL_L_UpperArm, nil)
+		apply_vehicle(CHECKED_BONES.SKEL_R_UpperArm, nil)
 
 	elseif weapon.name == "WEAPON_RAMMED_BY_CAR" then
 
 		print("Applying WEAPON_RAMMED_BY_CAR")
-		apply_vehicle(17, nil)
-		apply_vehicle(20, nil)
-		apply_vehicle(21, nil)
+		apply_hand(CHECKED_BONES.SKEL_Head, nil)
+		apply_hand(CHECKED_BONES.SPR_L_Breast, nil)
+		apply_hand(CHECKED_BONES.SPR_R_Breast, nil)
 
 	elseif weapon.name == "WEAPON_UNARMED" then
 
-		apply_hand(15, nil)
-		apply_hand(16, nil)
-		apply_hand(17, nil)
+		apply_hand(CHECKED_BONES.SKEL_Head, nil)
+		apply_hand(CHECKED_BONES.SKEL_R_Clavicle, nil)
+		apply_hand(CHECKED_BONES.SKEL_L_Clavicle, nil)
 
 	end
 
