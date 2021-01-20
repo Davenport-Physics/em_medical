@@ -361,11 +361,10 @@ function check_wound_heal_time()
 
 		end
 
-		for i = 1 #wounds do
+		for i = #wounds, 1, -1 do
 
 			if wounds[i].heal_time ~= nil and wounds[i].heal_time <= 0 then
 				table.remove(wounds, i)
-				i = 0
 			end
 
 		end
