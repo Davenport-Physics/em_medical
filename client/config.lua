@@ -40,7 +40,7 @@ CHECKED_BONES = {
 	SKEL_Spine_Root = {name = "SKEL_Spine_Root", hash = 0xE0FD, general_body_part = GENERAL_BODY_PARTS.BACK},
 }
 
-PAIN_THRESHOLD_BEFORE_SHOCK = 30
+PAIN_THRESHOLD_BEFORE_SHOCK = 25
 
 WOUND_TYPES = {
 	SMALL_CONTUSION      = {name = "Small Contusion"         , pain_level = 0, bleeding = 0, heal_time = 1200},
