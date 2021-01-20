@@ -27,7 +27,7 @@ local function add_wound(bone, wound_type, amount)
 			break
 		end
 
-		table.insert(PLAYER.WOUNDS[bone_part], {wound_name = wound_type.name, bandages = {}})
+		table.insert(PLAYER.WOUNDS[bone_part], {name = wound_type.name, bandages = {}})
 		if wound_type.heal_time ~= nil then
 			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].heal_time = wound_type.heal_time * 1000
 			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].last_update_time = GetGameTimer()
@@ -352,6 +352,10 @@ local function wound_heal_time(body_part, wound)
 end
 
 function check_wound_heal_time()
+
+	if is_player_unconscious() then
+		return 0
+	end
 
 	for body_part, wounds in pairs(PLAYER.WOUNDS) do
 		

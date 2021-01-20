@@ -37,6 +37,7 @@ CHECKED_BONES = {
 	SKEL_Spine1     = {name = "SKEL_Spine1"    , hash = 0x60F0, general_body_part = GENERAL_BODY_PARTS.BACK},
 	SKEL_Spine2     = {name = "SKEL_Spine2"    , hash = 0x60F1, general_body_part = GENERAL_BODY_PARTS.BACK},
 	SKEL_Spine3     = {name = "SKEL_Spine3"    , hash = 0x60F2, general_body_part = GENERAL_BODY_PARTS.BACK},
+	SKEL_Spine_Root = {name = "SKEL_Spine_Root", hash = 0xE0FD, general_body_part = GENERAL_BODY_PARTS.BACK},
 }
 
 PAIN_THRESHOLD_BEFORE_SHOCK = 30

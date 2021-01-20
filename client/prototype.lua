@@ -66,6 +66,10 @@ end
 
 local function damage_loop()
 
+    if is_player_unconscious() then
+        return 0
+    end
+
     local weapons = check_all_damage()
     local _, out_bone = GetPedLastDamageBone(ped)
 

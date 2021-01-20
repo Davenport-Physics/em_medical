@@ -198,3 +198,9 @@ function check_to_down_player()
     end
 
 end
+
+function is_player_unconscious()
+
+    return PLAYER.SHORTERM_EFFECTS["Shock"] ~= nil or PLAYER.SHORTERM_EFFECTS["Unconscious"] ~= nil
+
+end
