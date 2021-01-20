@@ -8,11 +8,16 @@ PLAYER = {
 }
 
 PLAYER_MODIFIERS = {
-
     PAIN_LEVEL = 0,
     STIMULANT_LEVEL = 0,
     DEPRESSANTS_LEVEL = 0
+}
 
+PLAYER_STATS = {
+    HEALTH = 0,
+    ARMOUR = 0,
+    LAST_HEALTH_DIFF = 0,
+    LAST_ARMOUR_DIFF = 0
 }
 
 ped = nil
@@ -122,6 +127,60 @@ function calculate_player_modifiers()
 
     calculate_pain_level()
     calculate_stimulatant_depressant_level()
+
+end
+
+function get_wound_hit_modifier()
+
+    local hit_severity = get_hit_severity()
+
+    if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
+        return 0
+    elseif hit_severity == DAMAGE_SEVERITY_TYPES.MINOR then
+        return 1
+    elseif hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
+        return 2
+    elseif hit_severity == DAMAGE_SEVERITY_TYPES.SEVERE then
+        return 3
+    elseif hit_severity == DAMAGE_SEVERITY_TYPES.CRTICICAL then
+        return 5
+    end
+
+end
+
+function get_hit_severity()
+
+    if PLAYER_STATS.LAST_HEALTH_DIFF >= 0 then
+        return DAMAGE_SEVERITY_TYPES.NONE
+    end
+
+    local health_diff = -PLAYER_STATS.LAST_HEALTH_DIFF
+
+    if health_diff < 15 then
+        return DAMAGE_SEVERITY_TYPES.MINOR
+    elseif health_diff < 60 then
+        return DAMAGE_SEVERITY_TYPES.MEDIUM
+    elseif health_diff < 100 then
+        return DAMAGE_SEVERITY_TYPES.SEVERE
+    elseif health_diff < 200 then
+        return DAMAGE_SEVERITY_TYPES.CRTICICAL
+    end
+
+end
+
+function calculate_health_armour()
+
+    local current_health = GetEntityHealth(ped)
+    local current_armour = GetPedArmour(ped)
+
+    PLAYER_STATS.LAST_HEALTH_DIFF = current_health - PLAYER_STATS.LAST_HEALTH
+    PLAYER_STATS.LAST_ARMOUR_DIFF = current_armour - PLAYER_STATS.LAST_ARMOUR
+
+    PLAYER_STATS.LAST_HEALTH = current_health
+    PLAYER_STATS.LAST_ARMOUR = current_armour
+
+
+    SetEntityHealth(ped, 200)
 
 end
 

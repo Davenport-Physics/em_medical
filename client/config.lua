@@ -105,6 +105,16 @@ ITEMS = {
 
 }
 
+DAMAGE_SEVERITY_TYPES = {
+
+	NONE      = 1,
+	MINOR     = 2,
+	MEDIUM    = 3,
+	SEVERE    = 4,
+	CRTICICAL = 5
+
+}
+
 EFFECTS = {
 
 	SHOCK           = {name = "Shock"        , effect_time = 60*15},

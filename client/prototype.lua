@@ -110,6 +110,7 @@ local function start_damage_loop()
         while true do
     
             ped = PlayerPedId()
+            calculate_health_armour()
             damage_loop()
             Citizen.Wait(20)
     
@@ -126,7 +127,6 @@ local function start_long_loop()
         Citizen.Wait(0)
         while true do
 
-            --print(GetEntityHealth(ped))
             check_wound_heal_time()
             bandage_loop()
             effects_loop()
