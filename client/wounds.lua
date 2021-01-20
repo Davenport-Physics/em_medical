@@ -23,10 +23,6 @@ local function add_wound(bone, wound_type, amount)
 
 	for i = 1, amount_to_add do
 
-		if #PLAYER.WOUNDS[bone_part] >= 10 then
-			break
-		end
-
 		table.insert(PLAYER.WOUNDS[bone_part], {name = wound_type.name, bandages = {}})
 		if wound_type.heal_time ~= nil then
 			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].heal_time = wound_type.heal_time * 1000
@@ -213,7 +209,7 @@ local function apply_fall(bone, weapon)
 
     if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
         return 0
-    end
+	end
 
     add_wound(bone, WOUND_TYPES.CONTUSION)
 
@@ -232,7 +228,7 @@ local function apply_fall(bone, weapon)
         
         add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 6)
         add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 5)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 4)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 7)
 
     end
 

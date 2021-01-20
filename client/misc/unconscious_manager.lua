@@ -7,7 +7,6 @@ function Respawn(inplace)
 	if not inplace then
         oX, oY, oZ = -259.41, 6319.14, 32.44
         heal_player()
-        ClearPedBloodDamage(ped)
         exports.arp_stats:ResetStats(false)
     else
         exports.arp_stats:ModStat("Food", 10000)

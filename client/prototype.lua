@@ -116,6 +116,7 @@ local function start_damage_loop()
             ped = PlayerPedId()
             calculate_health_armour()
             damage_loop()
+            check_to_run_player_resurrect()
             Citizen.Wait(20)
     
         end

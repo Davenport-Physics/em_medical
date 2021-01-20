@@ -16,7 +16,8 @@ PLAYER_STATS = {
     LAST_HEALTH = 0,
     LAST_ARMOUR = 0,
     LAST_HEALTH_DIFF = 0,
-    LAST_ARMOUR_DIFF = 0
+    LAST_ARMOUR_DIFF = 0,
+    WAS_PLAYER_DEAD  = false
 }
 
 ped = nil
@@ -155,19 +156,21 @@ function get_hit_severity()
 
     local health_diff = -PLAYER_STATS.LAST_HEALTH_DIFF
 
-    if health_diff < 15 then
+    if health_diff <= 15 then
         return DAMAGE_SEVERITY_TYPES.MINOR
-    elseif health_diff < 60 then
+    elseif health_diff <= 60 then
         return DAMAGE_SEVERITY_TYPES.MEDIUM
-    elseif health_diff < 100 then
+    elseif health_diff <= 100 then
         return DAMAGE_SEVERITY_TYPES.SEVERE
-    elseif health_diff < 200 then
+    elseif health_diff <= 200 then
         return DAMAGE_SEVERITY_TYPES.CRTICICAL
     end
 
 end
 
 function calculate_health_armour()
+
+    PLAYER_STATS.WAS_PLAYER_DEAD = IsPlayerDead(PlayerId())
 
     local current_health = GetEntityHealth(ped)
     local current_armour = GetPedArmour(ped)
@@ -204,11 +207,26 @@ function is_player_unconscious()
 
 end
 
+function check_to_run_player_resurrect()
+
+    if not PLAYER_STATS.WAS_PLAYER_DEAD then
+        return 0
+    end
+
+    local rx, ry, rz = table.unpack(GetEntityCoords(ped))
+    NetworkResurrectLocalPlayer(rx, ry, rz, 0.0, true, false)
+
+end
+
 function heal_player()
 
     PLAYER.WOUNDS = {}
     PLAYER.SHORTERM_EFFECTS = {}
+
     ClearPedTasksImmediately(ped)
     AnimpostfxStop("FocusIn")
+    ClearPedBloodDamage(ped)
+
+    check_to_run_player_resurrect()
 
 end
