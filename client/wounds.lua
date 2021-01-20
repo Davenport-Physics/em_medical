@@ -198,6 +198,7 @@ local function apply_severe_shotgun_shell(bone, weapon)
 	end
 
 	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
+	add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
 
 end
 
