@@ -21,23 +21,18 @@ local function add_wound(bone, wound_type, amount)
 		PLAYER.WOUNDS[bone_part] = {}
 	end
 
-	if PLAYER.WOUNDS[bone_part][wound_type.name] == nil then
-		PLAYER.WOUNDS[bone_part][wound_type.name] = {amount = 0}
-		if wound_type.heal_time ~= nil then
-			PLAYER.WOUNDS[bone_part][wound_type.name].heal_time = wound_type.heal_time * 1000
-			PLAYER.WOUNDS[bone_part][wound_type.name].last_update_time = GetGameTimer()
+	for i = 1, amount_to_add do
+
+		if #PLAYER.WOUNDS[bone_part] >= 10 then
+			break
 		end
-	end
-	
-	if PLAYER.WOUNDS[bone_part][wound_type.name].amount == 10 then
-		return 0
-	end
 
-	PLAYER.WOUNDS[bone_part][wound_type.name].amount = PLAYER.WOUNDS[bone_part][wound_type.name].amount + amount_to_add
-	PLAYER.WOUNDS[bone_part][wound_type.name].last_update_time = GetGameTimer()
+		table.insert(PLAYER.WOUNDS[bone_part], {wound_name = wound_type.name, bandages = {}})
+		if wound_type.heal_time ~= nil then
+			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].heal_time = wound_type.heal_time * 1000
+			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].last_update_time = GetGamerTimer()
+		end
 
-	if PLAYER.WOUNDS[bone_part][wound_type.name].amount > 10 then
-		PLAYER.WOUNDS[bone_part][wound_type.name].amount = 10
 	end
 
 end
@@ -342,21 +337,17 @@ function attempt_to_apply_weapon_type_damage(weapon)
 
 end
 
-local function wound_heal_time(body_part, wound, wound_info)
+local function wound_heal_time(body_part, wound)
 
-	if wound_info.heal_time == nil then
+	if wound.heal_time == nil then
 		return 0 
 	end
 
 	local current_time = GetGameTimer()
-	local dt = current_time - wound_info.last_update_time
+	local dt = current_time - wound.last_update_time
 
-	wound_info.heal_time        = wound_info.heal_time - dt
-	wound_info.last_update_time = current_time
-
-	if wound_info.heal_time <= 0 then
-		PLAYER.WOUNDS[body_part][wound] = nil
-	end
+	wound.heal_time        = wound.heal_time - dt
+	wound.last_update_time = current_time
 
 end
 
@@ -364,9 +355,18 @@ function check_wound_heal_time()
 
 	for body_part, wounds in pairs(PLAYER.WOUNDS) do
 		
-		for wound, wound_info in pairs(wounds) do
+		for i = 1, #wounds do
 
-			wound_heal_time(body_part, wound, wound_info)
+			wound_heal_time(body_part, wounds[i])
+
+		end
+
+		for i = 1 #wounds do
+
+			if wounds[i].heal_time ~= nil and wounds[i].heal_time <= 0 then
+				table.remove(wounds, i)
+				i = 0
+			end
 
 		end
 

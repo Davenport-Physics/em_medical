@@ -2,7 +2,6 @@
 PLAYER = {
     BLOOD_PRESSURE = {systolic = 100, diastolic = 75},
     WOUNDS = {},
-    BANDAGES = {},
     SHORTERM_EFFECTS = {},
     PERMANENT_EFFECTS = {}
 }
@@ -35,13 +34,13 @@ function pain_level_set(level)
 end
 
 
-local function get_wound_pain(wound, wound_amount)
+local function get_wound_pain(wound)
 
     for _, wound_info in pairs(WOUND_TYPES) do
         
-        if wound_info.name == wound then
+        if wound_info.name == wound.name then
 
-            return wound_info.pain_level * wound_amount
+            return wound_info.pain_level
 
         end
 
@@ -56,9 +55,9 @@ function calculate_pain_level()
     PLAYER_MODIFIERS.PAIN_LEVEL = 0
     for _, wounds in pairs(PLAYER.WOUNDS) do
         
-        for wound, wound_info in pairs(wounds) do
-            
-            PLAYER_MODIFIERS.PAIN_LEVEL = PLAYER_MODIFIERS.PAIN_LEVEL + get_wound_pain(wound, wound_info.amount)
+        for i = 1, #wounds do
+
+            PLAYER_MODIFIERS.PAIN_LEVEL = PLAYER_MODIFIERS.PAIN_LEVEL + get_wound_pain(wounds[i])
 
         end
 
