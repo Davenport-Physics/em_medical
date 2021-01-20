@@ -176,6 +176,6 @@ end)
 RegisterCommand("clear_wounds", function (source, args, raw)
 
     PLAYER.WOUNDS = {}
-    PLAYER.EFFECTS = {}
+    PLAYER.SHORTERM_EFFECTS = {}
 
 end)

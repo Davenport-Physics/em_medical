@@ -178,7 +178,6 @@ function calculate_health_armour()
     PLAYER_STATS.LAST_HEALTH = current_health
     PLAYER_STATS.LAST_ARMOUR = current_armour
 
-
     SetEntityHealth(ped, 200)
 
 end
