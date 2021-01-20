@@ -225,8 +225,8 @@ local function apply_fall(bone, weapon)
     elseif hit_severity == DAMAGE_SEVERITY_TYPES.SEVERE then
         
         add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 1)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 2)
+        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 2)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 3)
 
     elseif hit_severity == DAMAGE_SEVERITY_TYPES.CRTICICAL then
         
