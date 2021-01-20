@@ -70,7 +70,10 @@ end
 
 local function chest_shot_and_has_body_armour(bone)
 
-	return bone.general_body_part == GENERAL_BODY_PARTS.CHEST and PLAYER_STATS.LAST_ARMOUR > 0
+	if bone.general_body_part == GENERAL_BODY_PARTS.CHEST or bone.general_body_part == GENERAL_BODY_PARTS.BACK then
+		return PLAYER_STATS.LAST_ARMOUR > 0
+	end
+	return false
 
 end
 
@@ -223,13 +226,13 @@ local function apply_fall(bone, weapon)
         
         add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
         add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 1)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 2)
 
     elseif hit_severity == DAMAGE_SEVERITY_TYPES.CRTICICAL then
         
-        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 2)
-        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 2)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE)
+        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 6)
+        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 5)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 4)
 
     end
 
@@ -313,7 +316,6 @@ function attempt_to_apply_weapon_type_damage(weapon)
 
 	if weapon.name == "WEAPON_RUN_OVER_BY_CAR" then
 
-		print("Applying WEAPON_RUN_OVER_BY_CAR")
 		apply_vehicle(CHECKED_BONES.SPR_L_Breast, nil)
 		apply_vehicle(CHECKED_BONES.SPR_R_Breast, nil)
 
@@ -322,7 +324,6 @@ function attempt_to_apply_weapon_type_damage(weapon)
 
 	elseif weapon.name == "WEAPON_RAMMED_BY_CAR" then
 
-		print("Applying WEAPON_RAMMED_BY_CAR")
 		apply_hand(CHECKED_BONES.SKEL_Head, nil)
 		apply_hand(CHECKED_BONES.SPR_L_Breast, nil)
 		apply_hand(CHECKED_BONES.SPR_R_Breast, nil)
