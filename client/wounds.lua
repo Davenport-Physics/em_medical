@@ -211,7 +211,32 @@ end
 
 local function apply_fall(bone, weapon)
 
-	add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+	local hit_severity = get_hit_severity()
+
+    if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
+        return 0
+    end
+
+    add_wound(bone, WOUND_TYPES.CONTUSION)
+
+    if hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
+
+    	add_wound(bone, WOUND_TYPES.CONTUSION)
+        add_wound(bone, WOUND_TYPES.LACERATION)
+
+    elseif hit_severity == DAMAGE_SEVERITY_TYPES.SEVERE then
+        
+        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 1)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE)
+
+    elseif hit_severity == DAMAGE_SEVERITY_TYPES.CRTICICAL then
+        
+        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 2)
+        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 2)
+        add_wound(bone, WOUND_TYPES.BROKEN_BONE)
+
+    end
 
 end
 
