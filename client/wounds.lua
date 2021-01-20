@@ -30,7 +30,7 @@ local function add_wound(bone, wound_type, amount)
 		table.insert(PLAYER.WOUNDS[bone_part], {wound_name = wound_type.name, bandages = {}})
 		if wound_type.heal_time ~= nil then
 			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].heal_time = wound_type.heal_time * 1000
-			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].last_update_time = GetGamerTimer()
+			PLAYER.WOUNDS[bone_part][#PLAYER.WOUNDS[bone_part]].last_update_time = GetGameTimer()
 		end
 
 	end

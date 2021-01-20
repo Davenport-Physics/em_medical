@@ -13,8 +13,8 @@ PLAYER_MODIFIERS = {
 }
 
 PLAYER_STATS = {
-    HEALTH = 0,
-    ARMOUR = 0,
+    LAST_HEALTH = 0,
+    LAST_ARMOUR = 0,
     LAST_HEALTH_DIFF = 0,
     LAST_ARMOUR_DIFF = 0
 }
