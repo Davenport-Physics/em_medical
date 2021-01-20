@@ -41,6 +41,8 @@ CHECKED_BONES = {
 }
 
 PAIN_THRESHOLD_BEFORE_SHOCK = 25
+PLAYER_RESPAWN_HOLD_TIME = 5 * 1000
+REVIVE_WAIT_PERIOD = 10 * 60 * 1000
 
 WOUND_TYPES = {
 	SMALL_CONTUSION      = {name = "Small Contusion"         , pain_level = 0, bleeding = 0, heal_time = 1200},

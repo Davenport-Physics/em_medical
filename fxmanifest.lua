@@ -12,7 +12,8 @@ client_scripts {
     'client/wounds.lua',
     'client/effects/effects_core.lua',
     'client/effects/effects.lua',
-    'client/player.lua',
+    'client/player/player.lua',
+    'client/misc/unconscious_manager.lua',
     'client/libs.lua',
     'client/blood.lua'
 }

@@ -203,3 +203,12 @@ function is_player_unconscious()
     return PLAYER.SHORTERM_EFFECTS["Shock"] ~= nil or PLAYER.SHORTERM_EFFECTS["Unconscious"] ~= nil
 
 end
+
+function heal_player()
+
+    PLAYER.WOUNDS = {}
+    PLAYER.SHORTERM_EFFECTS = {}
+    ClearPedTasksImmediately(ped)
+    AnimpostfxStop("FocusIn")
+
+end

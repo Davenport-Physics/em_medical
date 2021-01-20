@@ -143,9 +143,14 @@ local function start_long_loop()
 
 end
 
-
 start_damage_loop()
 start_long_loop()
+
+AddEventHandler('kashacters:PlayerSpawned', function ()
+    --start_damage_loop()
+    --start_long_loop()
+end)
+
 
 RegisterCommand("check_player", function (source, args, raw)
 
@@ -175,9 +180,6 @@ end)
 
 RegisterCommand("clear_wounds", function (source, args, raw)
 
-    PLAYER.WOUNDS = {}
-    PLAYER.SHORTERM_EFFECTS = {}
-    ClearPedTasksImmediately(ped)
-    AnimpostfxStop("FocusIn")
+    heal_player()
 
 end)

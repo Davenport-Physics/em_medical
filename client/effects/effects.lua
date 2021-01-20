@@ -1,3 +1,5 @@
+RequestAnimDict("missarmenian2")
+
 register_effect_function(EFFECTS.KNOCKED_OUT, "intro", function() 
 
     DoScreenFadeOut(1000)
@@ -48,6 +50,7 @@ end)
 
 register_effect_function(EFFECTS.SHOCK, "intro", function() 
 
+    start_unconscious_loop()
     SetPedToRagdollWithFall(ped, 3000, 3000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
 end)
