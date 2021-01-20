@@ -46,6 +46,12 @@ register_effect_function(EFFECTS.NO_ADRENALINE, "loop", function()
 
 end)
 
+register_effect_function(EFFECTS.SHOCK, "intro", function() 
+
+    SetPedToRagdollWithFall(ped, 3000, 3000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+end)
+
 register_effect_function(EFFECTS.SHOCK, "loop", function() 
 
     pain_level_set(0)

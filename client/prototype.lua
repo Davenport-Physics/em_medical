@@ -177,5 +177,6 @@ RegisterCommand("clear_wounds", function (source, args, raw)
 
     PLAYER.WOUNDS = {}
     PLAYER.SHORTERM_EFFECTS = {}
+    ClearPedTasksImmediately(ped)
 
 end)
