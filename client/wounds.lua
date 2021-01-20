@@ -14,7 +14,8 @@ end
 local function add_wound(bone, wound_type, amount)
 
 	local amount_to_add = amount or 1
-	local bone_part = bone.general_body_part
+	local bone_part     = bone.general_body_part
+	local wound_type    = wound_type
 
 	if PLAYER.WOUNDS[bone_part] == nil then
 		PLAYER.WOUNDS[bone_part] = {}
@@ -72,27 +73,66 @@ local function apply_severe_sharp(bone, weapon)
 
 end
 
+local function chest_shot_and_has_body_armour(bone)
+
+	return bone.general_body_part == GENERAL_BODY_PARTS.CHEST and PLAYER_STATS.LAST_ARMOUR > 0
+
+end
+
 local function apply_small_caliber_round(bone, weapon)
 
-	--if GetPedArmour(ped) > 0 then
+	if chest_shot_and_has_body_armour(bone) then
 
-	--end
+		add_wound(bone, WOUND_TYPES.CONTUSION)
+		return
+
+	end
+
 	add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT)
-	add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT_EXIT)
+
+	if math.random() <= 0.2 then
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	else
+		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT_EXIT)
+	end
 
 end
 
 local function apply_medium_caliber_round(bone, weapon)
 
+	if chest_shot_and_has_body_armour(bone) then
+
+		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+		return
+		
+	end
+
 	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
-	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT)
+
+	if math.random() <= 0.15 then
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	else
+		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT)
+	end
 
 end
 
 local function apply_large_caliber_round(bone, weapon)
 
+	if chest_shot_and_has_body_armour(bone) then
+
+		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+		return
+		
+	end
+
 	add_wound(bone, WOUND_TYPES.LARGE_GUN_SHOT)
-	add_wound(bone, WOUND_TYPES.LARGE_GUN_SHOT_EXIT)
+
+	if math.random() <= 0.1 then
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	else
+		add_wound(bone, WOUND_TYPES.LARGE_GUN_SHOT_EXIT)
+	end
 
 end
 
@@ -136,11 +176,26 @@ end
 
 local function apply_shotgun_shell(bone, weapon)
 
+	if chest_shot_and_has_body_armour(bone) then
+
+		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+		return
+		
+	end
+
 	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
+	add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
 
 end
 
 local function apply_severe_shotgun_shell(bone, weapon)
+
+	if chest_shot_and_has_body_armour(bone) then
+
+		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+		return
+		
+	end
 
 	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
 

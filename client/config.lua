@@ -64,7 +64,8 @@ WOUND_TYPES = {
 	SMALL_INCISION       = {name = "Small Incision"          , pain_level = 3, bleeding = 2},
 	INCISION             = {name = "Incision"                , pain_level = 5, bleeding = 3},
 	LARGE_INCISION       = {name = "Large Incision"          , pain_level = 6, bleeding = 5},
-	FRACTURE             = {name = "Fracture"                , pain_level = 3, bleeding = 0}
+	FRACTURE             = {name = "Fracture"                , pain_level = 3, bleeding = 0},
+	BULLET_FRAGMENTS     = {name = "Bullet Fragments"        , pain_level = 3, bleeding = 0}
 }
 
 ITEMS = {
