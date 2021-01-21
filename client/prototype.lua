@@ -208,3 +208,9 @@ RegisterCommand("clear_wounds", function (source, args, raw)
     heal_player()
 
 end)
+
+RegisterCommand("give_meth", function (source, args, raw)
+
+    apply_short_term_effect(EFFECTS.METH)
+
+end)
