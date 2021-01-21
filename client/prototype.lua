@@ -127,7 +127,7 @@ local function start_damage_loop()
             calculate_health_armour()
             damage_loop()
             check_to_run_player_resurrect()
-            Citizen.Wait(20)
+            Citizen.Wait(50)
     
         end
     
