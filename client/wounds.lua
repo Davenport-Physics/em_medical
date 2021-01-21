@@ -1,16 +1,4 @@
 
-local function register_bone_hit_function(bone, func)
-
-	bone.func = func
-
-end
-
-local function register_weapon_use_function(weapon, func)
-
-	weapon.func = func
-
-end
-
 local function add_wound(bone, wound_type, amount)
 
 	local amount_to_add = amount or 1
@@ -391,7 +379,6 @@ function apply_weapon_damage(out_bone, weapon)
 		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == weapon.weapon_type then
 			apply_adrenaline()
 			WEAPON_TYPE_FUNCTIONS[i].func(bone, weapon)
-			check_to_knockout(bone, weapon)
             break
         end
 
