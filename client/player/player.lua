@@ -66,6 +66,25 @@ function calculate_pain_level()
 
 end
 
+function get_pain_level_body_part(body_part)
+
+    local pain_level = 0
+    for temp_body_part, wounds in pairs(PLAYER.WOUNDS) do
+        
+        if temp_body_part == body_part then
+
+            for i = 1, #wounds do
+                pain_level = pain_level + get_wound_pain(wounds[i])
+            end
+
+        end
+
+    end
+
+    return pain_level
+
+end
+
 local function get_modifier_level(effect_info, modifier_name)
 
     if effect_info.modifiers == nil then
@@ -219,7 +238,7 @@ function check_to_run_player_resurrect()
 
     local rx, ry, rz = table.unpack(GetEntityCoords(ped))
     NetworkResurrectLocalPlayer(rx, ry, rz, 0.0, false, false)
-    --SetPedToRagdollWithFall(ped, 3000, 3000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    SetPedToRagdollWithFall(ped, 3000, 3000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
 end
 

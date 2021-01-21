@@ -4,6 +4,7 @@ register_effect_function(EFFECTS.KNOCKED_OUT, "intro", function()
 
     DoScreenFadeOut(1000)
     SetPedToRagdollWithFall(ped, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    --SetPedToRagdoll(ped, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, 1, 0.0, 0.0, 0.0)
 
 end)
 

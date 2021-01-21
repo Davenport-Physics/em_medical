@@ -59,7 +59,7 @@ local function apply_sharp(bone, weapon)
 end
 
 local function apply_severe_sharp(bone, weapon)
-	
+
 	add_wound(bone, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
 
 end
@@ -279,6 +279,29 @@ local WEAPON_TYPE_FUNCTIONS =
 
 }
 
+local function check_to_knockout(bone)
+
+	if bone.general_body_part ~= GENERAL_BODY_PARTS.HEAD then
+		return 0
+	end
+
+	if PLAYER.WOUNDS[GENERAL_BODY_PARTS.HEAD] == nil then
+		return 0
+	end
+
+	local modifier = 1
+	if PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil then
+		modifier = 0.5
+	end
+
+	if get_pain_level_body_part(GENERAL_BODY_PARTS.HEAD) * modifier >= 10  then
+		if PLAYER.SHORTERM_EFFECTS["Knocked Out"] == nil then
+			apply_short_term_effect(EFFECTS.KNOCKED_OUT)
+		end
+	end
+
+end
+
 function apply_weapon_damage(out_bone, weapon)
 
     local bone = nil
@@ -294,13 +317,15 @@ function apply_weapon_damage(out_bone, weapon)
 	if bone == nil then
 		print("Unknown bone " .. out_bone)
         return -1
-    end
+	end
+	
 
     for i = 1, #WEAPON_TYPE_FUNCTIONS do
 
 		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == weapon.weapon_type then
 			apply_adrenaline()
-            WEAPON_TYPE_FUNCTIONS[i].func(bone, weapon)
+			WEAPON_TYPE_FUNCTIONS[i].func(bone, weapon)
+			check_to_knockout(bone)
             break
         end
 
