@@ -50,12 +50,15 @@ end
 local function check_all_damage()
 
     local temp_table = {}
-    for i = 1, #WEAPON_HASHES do
-        local retval = HasEntityBeenDamagedByWeapon(ped, WEAPON_HASHES[i].hash, 0)
+    for weapon_name, weapon_info in pairs(WEAPON_HASHES) do
+
+        local retval = HasEntityBeenDamagedByWeapon(ped, weapon_info.hash, 0)
         if retval then
-            table.insert(temp_table, WEAPON_HASHES[i])
+            table.insert(temp_table, weapon_info)
         end
+
     end
+
     if #temp_table > 0 then
         print("All damage :" .. json.encode(temp_table))
     end

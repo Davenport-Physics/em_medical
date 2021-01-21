@@ -21,341 +21,6 @@ local function add_wound(bone, wound_type, amount)
 
 end
 
-local function apply_hand_damage(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.SMALL_CONTUSION, 2)
-
-end
-
-local function apply_mild_blunt(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.CONTUSION, 2)
-
-end
-
-local function apply_severe_blunt(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.LACERATION, 1)
-	add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 2)
-
-end
-
-local function apply_sharp(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.PUNCTURE_WOUND)
-
-end
-
-local function apply_severe_sharp(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
-
-end
-
-local function chest_shot_and_has_body_armour(bone)
-
-	if bone.general_body_part == GENERAL_BODY_PARTS.CHEST or bone.general_body_part == GENERAL_BODY_PARTS.BACK then
-		return PLAYER_STATS.LAST_ARMOUR > 0
-	end
-	return false
-
-end
-
-local function apply_small_caliber_round(bone, weapon)
-
-	if chest_shot_and_has_body_armour(bone) then
-
-		add_wound(bone, WOUND_TYPES.CONTUSION)
-		return
-
-	end
-
-	add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT)
-
-	if math.random() <= 0.2 then
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	else
-		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT_EXIT)
-	end
-
-end
-
-local function apply_medium_small_caliber_round(bone, weapon)
-
-	if chest_shot_and_has_body_armour(bone) then
-
-		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-		return
-		
-	end
-
-	local wound = nil
-	local exit  = nil
-
-	if math.random() >= 0.6 then
-		wound = WOUND_TYPES.MEDIUM_GUN_SHOT
-		exit  = WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT
-	else
-		wound = WOUND_TYPES.SMALL_GUN_SHOT
-		exit  = WOUND_TYPES.SMALL_GUN_SHOT_EXIT
-	end
-	add_wound(bone, wound)
-
-	if math.random() <= 0.15 then
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	else
-		add_wound(bone, exit)
-	end
-
-end
-
-local function apply_medium_caliber_round(bone, weapon)
-
-	if chest_shot_and_has_body_armour(bone) then
-
-		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-		return
-		
-	end
-
-	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
-
-	if math.random() <= 0.15 then
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	else
-		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT)
-	end
-
-end
-
-local function apply_large_caliber_round(bone, weapon)
-
-	if chest_shot_and_has_body_armour(bone) then
-
-		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-		return
-		
-	end
-
-	add_wound(bone, WOUND_TYPES.LARGE_GUN_SHOT)
-
-	if math.random() <= 0.1 then
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	else
-		add_wound(bone, WOUND_TYPES.LARGE_GUN_SHOT_EXIT)
-	end
-
-end
-
-local function apply_less_lethal(bone, weapon)
-
-end
-
-local function apply_fire(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.SECOND_DEGREE_BURN)
-
-end
-
-local function apply_teeth(bone, weapon)
-
-end
-
-local function apply_hand(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.SMALL_CONTUSION)
-	add_wound(bone, WOUND_TYPES.SMALL_LACERATION)
-
-end
-
-local function apply_arrow(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
-
-end
-
-local function apply_severe_arrow(bone, weapon)
-
-end
-
-local function apply_explosion(bone, weapon)
-
-	add_wound(bone, WOUND_TYPES.SECOND_DEGREE_BURN)
-	add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 2)
-
-end
-
-local function apply_shotgun_shell(bone, weapon)
-
-	local hit_severity = get_hit_severity()
-
-	if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
-        return 0
-	end
-
-	if chest_shot_and_has_body_armour(bone) then
-
-		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-		return
-		
-	end
-
-	if hit_severity == DAMAGE_SEVERITY_TYPES.MINOR then
-		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	elseif hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
-		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS, 2)
-	else
-		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 4)
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	end
-
-end
-
-local function apply_severe_shotgun_shell(bone, weapon)
-
-	local hit_severity = get_hit_severity()
-
-	if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
-        return 0
-	end
-
-	if chest_shot_and_has_body_armour(bone) then
-
-		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-		return
-		
-	end
-
-	if hit_severity == DAMAGE_SEVERITY_TYPES.MINOR then
-		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	elseif hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
-		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 2)
-		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 1)
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	else
-		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 5)
-		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
-	end
-
-end
-
-local function apply_vehicle(bone, weapon)
-	
-	add_wound(bone, WOUND_TYPES.LACERATION, 3)
-	add_wound(bone, WOUND_TYPES.CONTUSION, 2)
-
-end
-
-local function apply_fall(bone, weapon)
-
-	local hit_severity = get_hit_severity()
-
-    if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
-        return 0
-	end
-
-    add_wound(bone, WOUND_TYPES.CONTUSION)
-
-    if hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
-
-    	add_wound(bone, WOUND_TYPES.CONTUSION)
-        add_wound(bone, WOUND_TYPES.LACERATION)
-
-    elseif hit_severity == DAMAGE_SEVERITY_TYPES.SEVERE then
-        
-        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
-        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 2)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 3)
-
-    elseif hit_severity == DAMAGE_SEVERITY_TYPES.CRTICICAL then
-        
-        add_wound(bone, WOUND_TYPES.LARGE_CONTUSION, 6)
-        add_wound(bone, WOUND_TYPES.LARGE_LACERATION, 5)
-        add_wound(bone, WOUND_TYPES.BROKEN_BONE, 7)
-
-    end
-
-end
-
-local function apply_drowning(bone, weapon)
-
-end
-
-local function apply_mild_irritant(bone, weapon)
-
-end
-
-local function apply_irritant(bone, weapon)
-
-end
-
-local function apply_severe_irritant(bone, weapon)
-
-end
-
-local WEAPON_TYPE_FUNCTIONS = 
-{
-
-	{weapon_type = WEAPON_TYPES.MILD_BLUNT, func = apply_hand_damage},
-	{weapon_type = WEAPON_TYPES.BLUNT, func = apply_mild_blunt},
-	{weapon_type = WEAPON_TYPES.SEVERE_BLUNT, func = apply_severe_blunt},
-	{weapon_type = WEAPON_TYPES.SHARP, func = apply_sharp},
-	{weapon_type = WEAPON_TYPES.SEVERE_SHARP, func = apply_severe_sharp},
-	{weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND, func = apply_small_caliber_round},
-	{weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND, func = apply_medium_caliber_round},
-	{weapon_type = WEAPON_TYPES.MEDIUM_SMALL_CALIBER_ROUND, func = apply_medium_small_caliber_round},
-	{weapon_type = WEAPON_TYPES.LARGE_CALIBER_ROUND, func = apply_large_caliber_round},
-	{weapon_type = WEAPON_TYPES.LESS_LETHAL, func = apply_less_lethal},
-	{weapon_type = WEAPON_TYPES.FIRE, func = apply_fire},
-	{weapon_type = WEAPON_TYPES.TEETH, func = apply_teeth},
-	{weapon_type = WEAPON_TYPES.HAND, func = apply_hand},
-	{weapon_type = WEAPON_TYPES.ARROW, func = apply_arrow},
-	{weapon_type = WEAPON_TYPES.SEVERE_ARROW, func = apply_severe_arrow},
-	{weapon_type = WEAPON_TYPES.EXPLOSION, func = apply_explosion},
-	{weapon_type = WEAPON_TYPES.SHOTGUN_SHELL, func = apply_shotgun_shell},
-	{weapon_type = WEAPON_TYPES.SEVERE_SHOTGUN_SHELL, func = apply_severe_shotgun_shell},
-	{weapon_type = WEAPON_TYPES.VEHICLE, func = apply_vehicle},
-	{weapon_type = WEAPON_TYPES.FALL, func = apply_fall},
-	{weapon_type = WEAPON_TYPES.DROWNING, func = apply_drowning},
-	{weapon_type = WEAPON_TYPES.MILD_IRRITANT, func = apply_mild_irritant},
-	{weapon_type = WEAPON_TYPES.IRRITANT, func = apply_irritant},
-	{weapon_type = WEAPON_TYPES.SEVERE_IRRITANT, func = apply_severe_irritant}
-
-}
-
-local function check_to_knockout(bone, weapon)
-
-	if bone.general_body_part ~= GENERAL_BODY_PARTS.HEAD then
-		return 0
-	end
-
-	if PLAYER.WOUNDS[GENERAL_BODY_PARTS.HEAD] == nil then
-		return 0
-	end
-
-	local modifier = 1
-	local comparison_modifier = 1
-
-	if PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil then
-		modifier = 0.5
-	end
-
-	if weapon.name == "WEAPON_UNARMED" then
-		modifier = 1
-		comparison_modifier = 0.5
-	end
-
-	if get_pain_level_body_part(GENERAL_BODY_PARTS.HEAD) * modifier >= 10 * comparison_modifier  then
-		if PLAYER.SHORTERM_EFFECTS["Knocked Out"] == nil then
-			apply_short_term_effect(EFFECTS.KNOCKED_OUT)
-		end
-	end
-
-end
-
 function apply_weapon_damage(out_bone, weapon)
 
     local bone = nil
@@ -373,16 +38,21 @@ function apply_weapon_damage(out_bone, weapon)
         return -1
 	end
 	
+	if weapon.damage == nil then
+		print("Weapon not registered to damage: " .. weapon.name)
+		return 0
+	end
 
-    for i = 1, #WEAPON_TYPE_FUNCTIONS do
+	apply_adrenaline()
+	weapon.damage(bone, weapon)
 
-		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == weapon.weapon_type then
-			apply_adrenaline()
-			WEAPON_TYPE_FUNCTIONS[i].func(bone, weapon)
-            break
-        end
+	if bone.reaction ~= nil then
+		bone.reaction(bone, weapon)
+	end
 
-    end
+	if weapon.reaction ~= nil then
+		weapon.reaction()
+	end
 
 end
 
@@ -458,6 +128,20 @@ function body_part_cleanup()
 		if next(wounds) == nil then
 			PLAYER.WOUNDS[body_part] = nil
 		end
+	end
+
+end
+
+function register_weapon_type_damages(weapon_type, damage_function)
+
+	for weapon_name, weapon_info in pairs(WEAPON_HASHES) do
+
+		if weapon_type == weapon_info.weapon_type then
+
+			weapon_info.damage = damage_function
+
+		end
+
 	end
 
 end
