@@ -92,6 +92,35 @@ local function apply_small_caliber_round(bone, weapon)
 
 end
 
+local function apply_medium_small_caliber_round(bone, weapon)
+
+	if chest_shot_and_has_body_armour(bone) then
+
+		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
+		return
+		
+	end
+
+	local wound = nil
+	local exit  = nil
+
+	if math.random() >= 0.6 then
+		wound = WOUND_TYPES.MEDIUM_GUN_SHOT
+		exit  = WOUND_TYPES.MEDIUM_GUN_SHOT_EXIT
+	else
+		wound = WOUND_TYPES.SMALL_GUN_SHOT
+		exit  = WOUND_TYPES.SMALL_GUN_SHOT_EXIT
+	end
+	add_wound(bone, wound)
+
+	if math.random() <= 0.15 then
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	else
+		add_wound(bone, exit)
+	end
+
+end
+
 local function apply_medium_caliber_round(bone, weapon)
 
 	if chest_shot_and_has_body_armour(bone) then
@@ -289,6 +318,7 @@ local WEAPON_TYPE_FUNCTIONS =
 	{weapon_type = WEAPON_TYPES.SEVERE_SHARP, func = apply_severe_sharp},
 	{weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND, func = apply_small_caliber_round},
 	{weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND, func = apply_medium_caliber_round},
+	{weapon_type = WEAPON_TYPES.MEDIUM_SMALL_CALIBER_ROUND, func = apply_medium_small_caliber_round},
 	{weapon_type = WEAPON_TYPES.LARGE_CALIBER_ROUND, func = apply_large_caliber_round},
 	{weapon_type = WEAPON_TYPES.LESS_LETHAL, func = apply_less_lethal},
 	{weapon_type = WEAPON_TYPES.FIRE, func = apply_fire},
