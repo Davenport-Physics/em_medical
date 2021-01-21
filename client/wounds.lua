@@ -183,8 +183,6 @@ local function apply_shotgun_shell(bone, weapon)
 		
 	end
 
-	print(hit_severity)
-
 	if hit_severity == DAMAGE_SEVERITY_TYPES.MINOR then
 		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
 		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
