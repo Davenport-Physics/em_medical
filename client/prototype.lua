@@ -130,11 +130,25 @@ local function start_damage_loop()
 
 end
 
+local function disable_weapon_insta_kill()
+
+    for i = 1, #WEAPON_HASHES do
+        if WEAPON_HASHES[i].weapon_type == WEAPON_TYPES.SHOTGUN_SHELL or WEAPON_HASHES[i].weapon_type == WEAPON_TYPES.SEVERE_SHOTGUN_SHELL then
+            SetWeaponDamageModifier(WEAPON_HASHES[i].hash, 0.1)
+        end
+    end
+
+end
+
 local function start_long_loop()
 
     Citizen.CreateThread(function() 
 
         Citizen.Wait(0)
+        disable_weapon_insta_kill()
+        SetWeaponDamageModifier(0x99B507EA, 0)
+        SetPlayerMeleeWeaponDamageModifier(PlayerId(), 0)
+
         while true do
 
             check_wound_heal_time()

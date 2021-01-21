@@ -35,8 +35,8 @@ CHECKED_BONES = {
 	SPR_R_Breast    = {name = "SPR_R_Breast"   , hash = 0x885F, general_body_part = GENERAL_BODY_PARTS.CHEST},
 	SKEL_Spine0     = {name = "SKEL_Spine0"    , hash = 0x5C01, general_body_part = GENERAL_BODY_PARTS.BACK},
 	SKEL_Spine1     = {name = "SKEL_Spine1"    , hash = 0x60F0, general_body_part = GENERAL_BODY_PARTS.BACK},
-	SKEL_Spine2     = {name = "SKEL_Spine2"    , hash = 0x60F1, general_body_part = GENERAL_BODY_PARTS.BACK},
-	SKEL_Spine3     = {name = "SKEL_Spine3"    , hash = 0x60F2, general_body_part = GENERAL_BODY_PARTS.BACK},
+	SKEL_Spine2     = {name = "SKEL_Spine2"    , hash = 0x60F1, general_body_part = GENERAL_BODY_PARTS.CHEST},
+	SKEL_Spine3     = {name = "SKEL_Spine3"    , hash = 0x60F2, general_body_part = GENERAL_BODY_PARTS.CHEST},
 	SKEL_Spine_Root = {name = "SKEL_Spine_Root", hash = 0xE0FD, general_body_part = GENERAL_BODY_PARTS.BACK},
 }
 
@@ -51,8 +51,8 @@ WOUND_TYPES = {
 	SMALL_LACERATION     = {name = "Small Laceration"        , pain_level = 1, bleeding = 0, heal_time = 1200},
 	LACERATION           = {name = "Laceration"              , pain_level = 1, bleeding = 1},
 	LARGE_LACERATION     = {name = "Large Laceration"        , pain_level = 2, bleeding = 2},
-	PUNCTURE_WOUND       = {name = "Puncture Wound"          , pain_level = 3, bleeding = 3},
-	LARGE_PUNCTURE_WOUND = {name = "Large Puncture Wound"    , pain_level = 5, bleeding = 5},
+	PUNCTURE_WOUND       = {name = "Puncture Wound"          , pain_level = 5, bleeding = 7},
+	LARGE_PUNCTURE_WOUND = {name = "Large Puncture Wound"    , pain_level = 7, bleeding = 9},
 	FIRST_DEGREE_BURN    = {name = "First Degree Burn"       , pain_level = 2, bleeding = 0, heal_time = 1440},
 	SECOND_DEGREE_BURN   = {name = "Second Degree Burn"      , pain_level = 5, bleeding = 0, heal_time = 2400},
 	THIRD_DEGREE_BURN    = {name = "Third Degree Burn"       , pain_level = 1, bleeding = 0},
@@ -68,7 +68,7 @@ WOUND_TYPES = {
 	INCISION             = {name = "Incision"                , pain_level = 5, bleeding = 3},
 	LARGE_INCISION       = {name = "Large Incision"          , pain_level = 6, bleeding = 5},
 	FRACTURE             = {name = "Fracture"                , pain_level = 3, bleeding = 0},
-	BULLET_FRAGMENTS     = {name = "Bullet Fragments"        , pain_level = 3, bleeding = 0},
+	BULLET_FRAGMENTS     = {name = "Bullet Fragments"        , pain_level = 4, bleeding = 0},
 	TASER_PRONGS         = {name = "Taser Prongs"            , pain_level = 1, bleeding = 0}
 }
 
@@ -121,14 +121,15 @@ DAMAGE_SEVERITY_TYPES = {
 }
 
 EFFECTS = {
-	SHOCK           = {name = "Shock"        , effect_time = 60*20},
-	ADRENALINE      = {name = "Adrenaline"   , modifiers = {stimulant = 2}, effect_time = 30},
-	NO_ADRENALINE   = {name = "No Adrenaline", effect_time = 60*5},
-	FATIGUE         = {name = "Fatigue"      , effect_time = 60*5},
-	KNOCKED_OUT     = {name = "Knocked Out"  , effect_time = 15},
-	UNCONSCIOUS     = {name = "Unconscious"  , effect_time = 60*10},
-	LIMPING         = {name = "Limping"      , effect_time = 60*2},
-	TAZED           = {name = "Tazed"        , effect_time = 60},
+	SHOCK             = {name = "Shock"        , effect_time = 60*20},
+	ADRENALINE        = {name = "Adrenaline"   , modifiers = {stimulant = 2}, effect_time = 30},
+	NO_ADRENALINE     = {name = "No Adrenaline", effect_time = 60*5},
+	FATIGUE           = {name = "Fatigue"      , effect_time = 60*5},
+	KNOCKED_OUT       = {name = "Knocked Out"  , effect_time = 15},
+	BLACK_OUT         = {name = "Black Out"    , effect_time = 2},
+	UNCONSCIOUS       = {name = "Unconscious"  , effect_time = 60*10},
+	LIMPING           = {name = "Limping"      , effect_time = 60*2},
+	TAZED             = {name = "Tazed"        , effect_time = 60},
 
 	MORPHINE      = ITEMS.INJECTABLES.MORPHINE,
 	EPINEPHRINE   = ITEMS.INJECTABLES.EPINEPHRINE,

@@ -213,8 +213,13 @@ function check_to_run_player_resurrect()
         return 0
     end
 
+    if GetEntitySpeed(ped) > 0.05 then
+        return 0
+    end
+
     local rx, ry, rz = table.unpack(GetEntityCoords(ped))
-    NetworkResurrectLocalPlayer(rx, ry, rz, 0.0, true, false)
+    NetworkResurrectLocalPlayer(rx, ry, rz, 0.0, false, false)
+    --SetPedToRagdollWithFall(ped, 3000, 3000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
 end
 

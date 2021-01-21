@@ -15,6 +15,18 @@ register_effect_function(EFFECTS.KNOCKED_OUT, "outro", function()
 
 end)
 
+register_effect_function(EFFECTS.BLACK_OUT, "intro", function() 
+
+    DoScreenFadeOut(1000)
+
+end)
+
+register_effect_function(EFFECTS.BLACK_OUT, "outro", function() 
+
+    DoScreenFadeIn(1500)
+
+end)
+
 register_effect_function(EFFECTS.ADRENALINE, "intro", function() 
 
     PlaySoundFrontend(-1, "FocusIn", "HintCamSounds", 1)

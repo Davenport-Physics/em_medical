@@ -59,7 +59,7 @@ local function apply_sharp(bone, weapon)
 end
 
 local function apply_severe_sharp(bone, weapon)
-
+	
 	add_wound(bone, WOUND_TYPES.LARGE_PUNCTURE_WOUND)
 
 end
@@ -177,7 +177,7 @@ local function apply_shotgun_shell(bone, weapon)
 		
 	end
 
-	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
+	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 4)
 	add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
 
 end
@@ -191,7 +191,7 @@ local function apply_severe_shotgun_shell(bone, weapon)
 		
 	end
 
-	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT)
+	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 5)
 	add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
 
 end
