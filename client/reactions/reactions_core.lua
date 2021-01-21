@@ -22,6 +22,6 @@ end
 
 function register_weapon_reaction(weapon, weapon_func)
 
-	weapon.reaction = reaction_func
+	weapon.reaction = weapon_func
 
 end

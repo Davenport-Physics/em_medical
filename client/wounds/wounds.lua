@@ -138,7 +138,7 @@ local function apply_teeth(bone, weapon)
 
 end
 
-local function apply_hand(bone, weapon)
+function apply_hand(bone, weapon)
 
 	add_wound(bone, WOUND_TYPES.SMALL_CONTUSION)
 	add_wound(bone, WOUND_TYPES.SMALL_LACERATION)
@@ -219,7 +219,7 @@ local function apply_severe_shotgun_shell(bone, weapon)
 
 end
 
-local function apply_vehicle(bone, weapon)
+function apply_vehicle(bone, weapon)
 	
 	add_wound(bone, WOUND_TYPES.LACERATION, 3)
 	add_wound(bone, WOUND_TYPES.CONTUSION, 2)

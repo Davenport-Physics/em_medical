@@ -4,7 +4,6 @@ register_effect_function(EFFECTS.KNOCKED_OUT, "intro", function()
 
     DoScreenFadeOut(1000)
     SetPedToRagdollWithFall(ped, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
-    --SetPedToRagdoll(ped, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, PLAYER.SHORTERM_EFFECTS["Knocked Out"].effect_time + 1000, 1, 0.0, 0.0, 0.0)
 
 end)
 
@@ -18,7 +17,7 @@ end)
 
 register_effect_function(EFFECTS.BLACK_OUT, "intro", function() 
 
-    DoScreenFadeOut(1000)
+    DoScreenFadeOut(2000)
 
 end)
 
@@ -99,4 +98,24 @@ register_effect_function(EFFECTS.LIMPING, "outro", function()
 
 
 
+end)
+
+register_effect_function(EFFECTS.TAZED, "intro", function() 
+
+    DoScreenFadeOut(2000)
+    FreezeEntityPosition(ped, true)
+
+end)
+
+
+register_effect_function(EFFECTS.TAZED, "loop", function() 
+
+
+end)
+
+register_effect_function(EFFECTS.TAZED, "outro", function() 
+
+    DoScreenFadeIn(1500)
+    FreezeEntityPosition(ped, false)
+    
 end)

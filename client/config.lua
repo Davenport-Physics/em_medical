@@ -131,10 +131,10 @@ EFFECTS = {
 	NO_ADRENALINE     = {name = "No Adrenaline", effect_time = 60*5},
 	FATIGUE           = {name = "Fatigue"      , effect_time = 60*5},
 	KNOCKED_OUT       = {name = "Knocked Out"  , effect_time = 15},
-	BLACK_OUT         = {name = "Black Out"    , effect_time = 2},
+	BLACK_OUT         = {name = "Black Out"    , effect_time = 4},
 	UNCONSCIOUS       = {name = "Unconscious"  , effect_time = 60*10},
 	LIMPING           = {name = "Limping"      , effect_time = 60*2},
-	TAZED             = {name = "Tazed"        , effect_time = 60},
+	TAZED             = {name = "Tazed"        , effect_time = 10},
 
 	MORPHINE      = ITEMS.INJECTABLES.MORPHINE,
 	EPINEPHRINE   = ITEMS.INJECTABLES.EPINEPHRINE,
