@@ -338,7 +338,7 @@ local WEAPON_TYPE_FUNCTIONS =
 
 }
 
-local function check_to_knockout(bone)
+local function check_to_knockout(bone, weapon)
 
 	if bone.general_body_part ~= GENERAL_BODY_PARTS.HEAD then
 		return 0
@@ -349,11 +349,18 @@ local function check_to_knockout(bone)
 	end
 
 	local modifier = 1
+	local comparison_modifier = 1
+
 	if PLAYER.SHORTERM_EFFECTS["Adrenaline"] ~= nil then
 		modifier = 0.5
 	end
 
-	if get_pain_level_body_part(GENERAL_BODY_PARTS.HEAD) * modifier >= 10  then
+	if weapon.name == "WEAPON_UNARMED" then
+		modifier = 1
+		comparison_modifier = 0.5
+	end
+
+	if get_pain_level_body_part(GENERAL_BODY_PARTS.HEAD) * modifier >= 10 * comparison_modifier  then
 		if PLAYER.SHORTERM_EFFECTS["Knocked Out"] == nil then
 			apply_short_term_effect(EFFECTS.KNOCKED_OUT)
 		end
@@ -384,7 +391,7 @@ function apply_weapon_damage(out_bone, weapon)
 		if WEAPON_TYPE_FUNCTIONS[i].weapon_type == weapon.weapon_type then
 			apply_adrenaline()
 			WEAPON_TYPE_FUNCTIONS[i].func(bone, weapon)
-			check_to_knockout(bone)
+			check_to_knockout(bone, weapon)
             break
         end
 
