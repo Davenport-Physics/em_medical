@@ -170,6 +170,12 @@ end
 
 local function apply_shotgun_shell(bone, weapon)
 
+	local hit_severity = get_hit_severity()
+
+	if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
+        return 0
+	end
+
 	if chest_shot_and_has_body_armour(bone) then
 
 		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
@@ -177,13 +183,29 @@ local function apply_shotgun_shell(bone, weapon)
 		
 	end
 
-	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 4)
-	add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	print(hit_severity)
+
+	if hit_severity == DAMAGE_SEVERITY_TYPES.MINOR then
+		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	elseif hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
+		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS, 2)
+	else
+		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 4)
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	end
 
 end
 
 local function apply_severe_shotgun_shell(bone, weapon)
 
+	local hit_severity = get_hit_severity()
+
+	if hit_severity == DAMAGE_SEVERITY_TYPES.NONE then
+        return 0
+	end
+
 	if chest_shot_and_has_body_armour(bone) then
 
 		add_wound(bone, WOUND_TYPES.LARGE_CONTUSION)
@@ -191,8 +213,17 @@ local function apply_severe_shotgun_shell(bone, weapon)
 		
 	end
 
-	add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 5)
-	add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	if hit_severity == DAMAGE_SEVERITY_TYPES.MINOR then
+		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 1)
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	elseif hit_severity == DAMAGE_SEVERITY_TYPES.MEDIUM then
+		add_wound(bone, WOUND_TYPES.SMALL_GUN_SHOT, 2)
+		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 1)
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	else
+		add_wound(bone, WOUND_TYPES.MEDIUM_GUN_SHOT, 5)
+		add_wound(bone, WOUND_TYPES.BULLET_FRAGMENTS)
+	end
 
 end
 

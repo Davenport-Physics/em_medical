@@ -134,7 +134,7 @@ local function disable_weapon_insta_kill()
 
     for i = 1, #WEAPON_HASHES do
         if WEAPON_HASHES[i].weapon_type == WEAPON_TYPES.SHOTGUN_SHELL or WEAPON_HASHES[i].weapon_type == WEAPON_TYPES.SEVERE_SHOTGUN_SHELL then
-            SetWeaponDamageModifier(WEAPON_HASHES[i].hash, 0.1)
+            SetWeaponDamageModifier(WEAPON_HASHES[i].hash, 0.4)
         end
     end
 
