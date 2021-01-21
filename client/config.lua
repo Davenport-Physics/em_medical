@@ -38,6 +38,8 @@ CHECKED_BONES = {
 	SKEL_Spine2     = {name = "SKEL_Spine2"    , hash = 0x60F1, general_body_part = GENERAL_BODY_PARTS.CHEST},
 	SKEL_Spine3     = {name = "SKEL_Spine3"    , hash = 0x60F2, general_body_part = GENERAL_BODY_PARTS.CHEST},
 	SKEL_Spine_Root = {name = "SKEL_Spine_Root", hash = 0xE0FD, general_body_part = GENERAL_BODY_PARTS.BACK},
+	SM_CockNBalls_ROOT = {name = "SM_CockNBalls_ROOT", hash = 0xC67D,general_body_part = GENERAL_BODY_PARTS.PELVIS},
+	SM_CockNBalls      = {name = "SM_CockNBalls", hash = 0x9D34, general_body_part = GENERAL_BODY_PARTS.PELVIS},
 }
 
 PAIN_THRESHOLD_BEFORE_SHOCK = 25
@@ -208,7 +210,7 @@ WEAPON_HASHES = {
 	WEAPON_GADGETPISTOL   = {name = "WEAPON_GADGETPISTOL", hash = 0x57A4368C, weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND},
 	WEAPON_SMG_MK2        = {name = "WEAPON_SMG_MK2", hash = 0x78A97CD0, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
 	WEAPON_ASSAULTSMG     = {name = "WEAPON_ASSAULTSMG", hash = 0xEFE7E2DF, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
-	WEAPON_COMBATPDW      = {name = "WEAPON_COMBATPDW = ", hash = 0x0A3D4D34, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
+	WEAPON_COMBATPDW      = {name = "WEAPON_COMBATPDW", hash = 0x0A3D4D34, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
 	WEAPON_MACHINEPISTOL  = {name = "WEAPON_MACHINEPISTOL", hash = 0xDB1AA450, weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND},
 	WEAPON_MINISMG        = {name = "WEAPON_MINISMG", hash = 0xBD248B55, weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND},
 	WEAPON_RAYCARBINE     = {name = "WEAPON_RAYCARBINE", hash = 0x476BF155, weapon_type = WEAPON_TYPES.LARGE_CALIBER_ROUND},
@@ -248,7 +250,7 @@ WEAPON_HASHES = {
     WEAPON_NIGHTSTICK            = {name = "WEAPON_NIGHTSTICK", hash = 0x678B81B1, weapon_type = WEAPON_TYPES.BLUNT},
     WEAPON_HAMMER                = {name = "WEAPON_HAMMER", hash = 0x4E875F73, weapon_type = WEAPON_TYPES.SEVERE_BLUNT},
     WEAPON_BAT                   = {name = "WEAPON_BAT", hash = 0x958A4A8F, weapon_type = WEAPON_TYPES.BLUNT},
-    WEAPON_GOLFCLUB              = {name = "WEAPON_GOLFCLUB = ", hash = 0x440E4788, weapon_type = WEAPON_TYPES.BLUNT},
+    WEAPON_GOLFCLUB              = {name = "WEAPON_GOLFCLUB", hash = 0x440E4788, weapon_type = WEAPON_TYPES.BLUNT},
     WEAPON_CROWBAR               = {name = "WEAPON_CROWBAR", hash = 0x84BD7BFD, weapon_type = WEAPON_TYPES.SEVERE_ARROW},
     WEAPON_PISTOL                = {name = "WEAPON_PISTOL", hash = 0x1B06D571, weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND},
     WEAPON_COMBATPISTOL          = {name = "WEAPON_COMBATPISTOL", hash = 0x5EF9FEC4, weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND},
@@ -256,7 +258,6 @@ WEAPON_HASHES = {
     WEAPON_PISTOL50              = {name = "WEAPON_PISTOL50", hash = 0x99AEEB3B, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
     WEAPON_MICROSMG              = {name = "WEAPON_MICROSMG", hash = 0x13532244, weapon_type = WEAPON_TYPES.SMALL_CALIBER_ROUND},
     WEAPON_SMG                   = {name = "WEAPON_SMG", hash = 0x2BE6766B, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
-    WEAPON_ASSAULTSMG            = {name = "WEAPON_ASSAULTSMG", hash = 0xEFE7E2DF, weapon_type = WEAPON_TYPES.MEDIUM_CALIBER_ROUND},
     WEAPON_ASSAULTRIFLE          = {name = "WEAPON_ASSAULTRIFLE", hash = 0xBFEFFF6D, weapon_type = WEAPON_TYPES.LARGE_CALIBER_ROUND},
     WEAPON_CARBINERIFLE          = {name = "WEAPON_CARBINERIFLE", hash = 0x83BF0278, weapon_type = WEAPON_TYPES.LARGE_CALIBER_ROUND},
     WEAPON_ADVANCEDRIFLE         = {name = "WEAPON_ADVANCEDRIFLE", hash = 0xAF113F99, weapon_type = WEAPON_TYPES.LARGE_CALIBER_ROUND},
@@ -299,8 +300,8 @@ WEAPON_HASHES = {
     WEAPON_FALL                  = {name = "WEAPON_FALL", hash = 0xCDC174B0, weapon_type = WEAPON_TYPES.FALL},
     WEAPON_EXHAUSTION            = {name = "WEAPON_EXHAUSTION", hash = 0x364A29EC},
     WEAPON_HIT_BY_WATER_CANNON   = {name = "WEAPON_HIT_BY_WATER_CANNON", hash = 0xCC34325E, weapon_type = WEAPON_TYPES.BLUNT},
-    WEAPON_RAMMED_BY_CAR         = {name = "WEAPON_RAMMED_BY_CAR = ", hash = 0x07FC7D7A, weapon_type = WEAPON_TYPES.VEHICLE},
-    WEAPON_RUN_OVER_BY_CAR       = {name = "WEAPON_RUN_OVER_BY_CAR = ", hash = 0xA36D413E, weapon_type = WEAPON_TYPES.VEHICLE},
-    WEAPON_HELI_CRASH            = {name = "WEAPON_HELI_CRASH = ", hash = 0x145F1012, weapon_type = WEAPON_TYPES.EXPLOSION},
+    WEAPON_RAMMED_BY_CAR         = {name = "WEAPON_RAMMED_BY_CAR", hash = 0x07FC7D7A, weapon_type = WEAPON_TYPES.VEHICLE},
+    WEAPON_RUN_OVER_BY_CAR       = {name = "WEAPON_RUN_OVER_BY_CAR", hash = 0xA36D413E, weapon_type = WEAPON_TYPES.VEHICLE},
+    WEAPON_HELI_CRASH            = {name = "WEAPON_HELI_CRASH", hash = 0x145F1012, weapon_type = WEAPON_TYPES.EXPLOSION},
     WEAPON_FIRE                  = {name = "WEAPON_FIRE", hash = 0xDF8E89EB, weapon_type = WEAPON_TYPES.FIRE}
 }

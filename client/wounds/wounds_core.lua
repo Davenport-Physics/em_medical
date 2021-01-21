@@ -78,6 +78,8 @@ function attempt_to_apply_weapon_type_damage(weapon)
 		apply_hand(CHECKED_BONES.SKEL_R_Clavicle, nil)
 		apply_hand(CHECKED_BONES.SKEL_L_Clavicle, nil)
 
+	else
+		weapon.damage(CHECKED_BONES.SM_CockNBalls, weapon)
 	end
 
 end
