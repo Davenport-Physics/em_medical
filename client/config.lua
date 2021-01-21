@@ -106,6 +106,9 @@ ITEMS = {
 		ACETAMINOPHEN = {name = "Acetaminophen"},
 		ASPIRIN       = {name = "Aspirin"},
 		IBUPROFEN     = {name = "Ibuprofen"}
+	},
+	DRUGS = {
+		METH = {name = "Meth", effect_time = 60}
 	}
 
 }
@@ -144,7 +147,9 @@ EFFECTS = {
 
 	ACETAMINOPHEN = ITEMS.MEDICATION.ACETAMINOPHEN,
 	ASPIRIN       = ITEMS.MEDICATION.ASPIRIN,
-	IBUPROFEN     = ITEMS.MEDICATION.IBUPROFEN
+	IBUPROFEN     = ITEMS.MEDICATION.IBUPROFEN,
+
+	METH          = ITEMS.DRUGS.METH
 }
 
 WEAPON_TYPES = {

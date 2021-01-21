@@ -1,7 +1,15 @@
 
 local function stun_gun_reaction()
 
-	
+	if PLAYER.SHORTTERM_EFFECTS["Meth"] ~= nil then
+
+		if math.random() <= 0.5 then
+			apply_short_term_effect(EFFECTS.TAZED)
+		end
+
+	else
+		apply_short_term_effect(EFFECTS.TAZED)
+	end
 
 end
 
