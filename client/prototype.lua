@@ -64,11 +64,7 @@ local function check_all_damage()
 
 end
 
-local function damage_loop()
-
-    if is_player_unconscious() then
-        return 0
-    end
+local function check_for_weapon_damage()
 
     local weapons = check_all_damage()
     local _, out_bone = GetPedLastDamageBone(ped)
@@ -84,6 +80,15 @@ local function damage_loop()
         end
 
     end
+
+end
+
+local function damage_loop()
+
+    if not is_player_unconscious() then
+        check_for_weapon_damage()
+    end
+
     ClearEntityLastDamageEntity(ped)
     ClearEntityLastWeaponDamage(ped)
 
