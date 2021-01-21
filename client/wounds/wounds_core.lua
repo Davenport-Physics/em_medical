@@ -1,5 +1,5 @@
 
-local function add_wound(bone, wound_type, amount)
+function add_wound(bone, wound_type, amount)
 
 	local amount_to_add = amount or 1
 	local bone_part     = bone.general_body_part

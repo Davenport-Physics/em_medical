@@ -8,7 +8,7 @@ end
 
 function register_generic_body_part_reaction(body_part, reaction_func)
 
-	for bone_name, bone_info in pairs(CHECKED_BONES) do
+	for bone_name, bone_info in pairs(GENERAL_BODY_PARTS) do
 
 		if body_part == bone_info.general_body_part then
 
