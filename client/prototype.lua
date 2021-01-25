@@ -1,37 +1,4 @@
 
-
--- GetWeaponDamageType(Hash weaponHash)
---[[
-
-0=unknown (or incorrect weaponHash)  
-1= no damage (flare,snowball, petrolcan)  
-2=melee  
-3=bullet  
-4=force ragdoll fall  
-5=explosive (RPG, Railgun, grenade)  
-6=fire(molotov)  
-8=fall(WEAPON_HELI_CRASH)  
-10=electric  
-11=barbed wire  
-12=extinguisher  
-13=gas  
-14=water cannon(WEAPON_HIT_BY_WATER_CANNON)  
-
--- BOOL HAS_PED_BEEN_DAMAGED_BY_WEAPON(Ped ped, Hash weaponHash, int weaponType);
---[[
-    It determines what weapons caused damage:  
-    If you want to define only a specific weapon, second parameter=weapon hash code, third parameter=0  
-    If you want to define any melee weapon, second parameter=0, third parameter=1.  
-    If you want to identify any weapon (firearms, melee, rockets, etc.), second parameter=0, third parameter=2.
-]]
-
--- BOOL IS_PED_MALE(Ped ped);
--- BOOL IS_PED_RAGDOLL(Ped ped);
-
-
--- _GET_TIME_OF_LAST_PED_WEAPON_DAMAGE
--- local retval = GetTimeOfLastPedWeaponDamage(ped, weaponHash)
-
 local function check_all_timed_damage()
 
     local temp_table = {}
