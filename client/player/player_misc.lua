@@ -48,6 +48,28 @@ function ResetStats(ToCurrentMaxes)
 
 end
 
+function AddStat(name, amount)
+
+    assert(name ~= nil)
+    local upper = name:upper()
+    if PLAYER.MISC_LEVELS[upper] == nil then
+        Citizen.Trace("No stat by name of " .. name .. "\n")
+        return
+        
+    end
+
+    PLAYER.MISC_LEVELS[upper] = PLAYER.MISC_LEVELS[upper] + amount
+    if PLAYER.MISC_LEVELS[upper] < 0 then
+        PLAYER.MISC_LEVELS[upper] = 0
+    end
+
+
+    if PLAYER.MISC_LEVELS[upper] > PLAYER_MAX_LEVEL[upper] then
+        PLAYER.MISC_LEVELS[upper] = PLAYER_MAX_LEVEL[upper]
+    end
+
+end
+
 function food_loop()
 
     if PLAYER.MISC_LEVELS.FOOD > PLAYER_MAX_LEVEL.FOOD then
