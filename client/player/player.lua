@@ -1,6 +1,12 @@
 
 PLAYER = {
     BLOOD_PRESSURE = {systolic = 100, diastolic = 75},
+    BLOOD_LEVEL = 5000, -- in ml
+    MISC_LEVELS = {
+        FOOD   = PLAYER_MAX_LEVEL.FOOD,
+        WATER  = PLAYER_MAX_LEVEL.WATER,
+        STRESS = 0
+    },
     WOUNDS = {},
     SHORTERM_EFFECTS = {},
     PERMANENT_EFFECTS = {}

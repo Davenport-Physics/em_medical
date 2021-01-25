@@ -42,6 +42,18 @@ CHECKED_BONES = {
 	SM_CockNBalls      = {name = "SM_CockNBalls", hash = 0x9D34, general_body_part = GENERAL_BODY_PARTS.PELVIS},
 }
 
+PLAYER_MAX_LEVEL = {
+
+	FOOD   = 1000000,
+	WATER  = 1000000,
+	STRESS = 1000000
+
+}
+
+PLAYER_MAX_FOOD_LEVEL   = 1000000
+PLAYER_MAX_WATER_LEVEL  = 1000000
+PLAYER_MAX_STRESS_LEVEL = 1000000
+
 PAIN_THRESHOLD_BEFORE_SHOCK = 25
 PLAYER_RESPAWN_HOLD_TIME = 5 * 1000
 REVIVE_WAIT_PERIOD = 10 * 60 * 1000
@@ -135,6 +147,8 @@ EFFECTS = {
 	UNCONSCIOUS       = {name = "Unconscious"  , effect_time = 60*10},
 	LIMPING           = {name = "Limping"      , effect_time = 60*2},
 	TAZED             = {name = "Tazed"        , effect_time = 10},
+	DEHYDRATED        = {name = "Dehydrated"   , effect_time = 60},
+	STARVED           = {name = "Starved"      , effect_time = 60},
 
 	MORPHINE      = ITEMS.INJECTABLES.MORPHINE,
 	EPINEPHRINE   = ITEMS.INJECTABLES.EPINEPHRINE,
