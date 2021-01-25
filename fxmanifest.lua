@@ -14,8 +14,8 @@ client_scripts {
     'client/effects/effects_core.lua',
     'client/effects/effects.lua',
     'client/player/player.lua',
-    'client/player/player_misc.lua',
-    'client/player/player_misc_events.lua',
+    'client/player/player_stat.lua',
+    'client/player/player_stat_events.lua',
     'client/misc/unconscious_manager.lua',
     'client/libs.lua',
     'client/blood.lua',
@@ -25,10 +25,11 @@ client_scripts {
 }
 
 exports {
-    'GetStat',
-    "ModStat",
-    "GetStatMax",
-    "SetStatMax",
-    "ResetStatMaxes",
-    "ResetStats"
+    'get_stat',
+    "mod_stat",
+    "get_stat_max",
+    "set_stat_max",
+    "reset_stat_maxes",
+    "reset_stat",
+    "add_stat"
 }

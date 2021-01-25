@@ -1,15 +1,23 @@
 RequestAnimDict('mp_player_intdrink')
 RequestAnimDict('mp_player_inteat@burger')
 
-function GetStat(name)
+function get_stat(name)
 
     assert(name ~= nil)
-    return PLAYER.MISC_LEVELS[name:upper()]
+    local upper = name:upper()
+
+    if upper == "HEALTH" then
+        return 200
+    elseif upper == "ARMOUR" then
+        return PLAYER_STATS.LAST_ARMOUR
+    end
+
+    return PLAYER.MISC_LEVELS[upper]
 
 end
 
 
-function ModStat(name, amount)
+function mod_stat(name, amount)
 
     assert(name ~= nil)
     local upper = name:upper()
@@ -21,18 +29,26 @@ function ModStat(name, amount)
 
 end
 
-function GetStatMax(name)
+function get_stat_max(name)
 
     assert(name ~= nil)
-    return PLAYER_MAX_LEVEL[name:upper()]
+    local upper = name:upper()
+
+    if upper == "HEALTH" then
+        return 200
+    elseif upper == "ARMOUR" then
+        return GetPlayerMaxArmour(PlayerId())
+    end
+
+    return PLAYER_MAX_LEVEL[upper]
 
 end
 
-function SetStatMax(name, amount)
+function set_stat_max(name, amount)
 
 end
 
-function ResetStatMaxes()
+function reset_stat_maxes()
 
     PLAYER.MISC_LEVELS.FOOD   = PLAYER_MAX_LEVEL.FOOD
     PLAYER.MISC_LEVELS.WATER  = PLAYER_MAX_LEVEL.WATER
@@ -40,7 +56,7 @@ function ResetStatMaxes()
 
 end
 
-function ResetStats(ToCurrentMaxes)
+function reset_stat(to_current_maxes)
 
     PLAYER.MISC_LEVELS.FOOD   = PLAYER_MAX_LEVEL.FOOD
     PLAYER.MISC_LEVELS.WATER  = PLAYER_MAX_LEVEL.WATER
@@ -48,7 +64,7 @@ function ResetStats(ToCurrentMaxes)
 
 end
 
-function AddStat(name, amount)
+function add_stat(name, amount)
 
     assert(name ~= nil)
     local upper = name:upper()
@@ -124,7 +140,7 @@ function water_loop()
 end
 
 
-function OnEat(prop_name)
+function on_eat(prop_name)
 	if not IsAnimated then
 		prop_name = prop_name or 'prop_cs_burger_01'
 		IsAnimated = true
@@ -144,7 +160,7 @@ function OnEat(prop_name)
 	end
 end
 
-function OnDrink(prop_name)
+function on_drink(prop_name)
 	if not IsAnimated then
 		prop_name = prop_name or 'prop_ld_flow_bottle'
 		IsAnimated = true
@@ -165,7 +181,7 @@ function OnDrink(prop_name)
     end
 end
 
-function OnDonut(prop_name)
+function on_donut(prop_name)
 	if not IsAnimated then
 		prop_name = prop_name or 'prop_donut_02'
 		IsAnimated = true

@@ -7,10 +7,9 @@ function Respawn(inplace)
 	if not inplace then
         oX, oY, oZ = -259.41, 6319.14, 32.44
         heal_player()
-        exports.arp_stats:ResetStats(false)
+        ResetStats()
     else
-        exports.arp_stats:ModStat("Food", 10000)
-        exports.arp_stats:ModStat("Water", 10000)
+        ResetStats()
 		TriggerEvent("alerts:add", {255, 255, 255}, {40, 183, 40}, "System", "You have been revived! Go forth and do great things!")
     end
     SetEntityCoords(ped, oX, oY, oZ)
