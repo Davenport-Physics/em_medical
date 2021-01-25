@@ -7,9 +7,9 @@ function Respawn(inplace)
 	if not inplace then
         oX, oY, oZ = -259.41, 6319.14, 32.44
         heal_player()
-        ResetStats()
+        rest_stats()
     else
-        ResetStats()
+        reset_stats()
 		TriggerEvent("alerts:add", {255, 255, 255}, {40, 183, 40}, "System", "You have been revived! Go forth and do great things!")
     end
     SetEntityCoords(ped, oX, oY, oZ)
