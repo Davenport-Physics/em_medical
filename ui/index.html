@@ -44,7 +44,7 @@
                 </div>
             </div>
         </center> 
-        <article class="message" style="width:15%; height:20%; position:relative; bottom:30%; left:25%">
+        <article id="vitals_panel" class="message is-info" style="width:15%; height:20%; position:relative; bottom:30%; left:25%">
             <div class="message-header">
               <p>Vitals</p>
             </div>
@@ -52,10 +52,50 @@
                 <strong>Blood Pressure:</strong>
                 <strong>Pulse:</strong>
             </div>
-          </article>
+        </article>
+        <article id="wounds_panel" class="message is-danger" style="width:15%; height:40%; position:relative; bottom:60%; left: 65%">
+            <div class="message-header">
+              <p>Wounds</p>
+              <button class="delete" id="wounds_panel_close" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                <aside class="menu">
+                    <ul class="menu-list">
+                      <li><a>Dashboard</a></li>
+                      <li><a>Medium Gun Shot Entrance</a></li>
+                      <li><a>Customers</a></li>
+                      <li><a>Customers</a></li>
+                      <li><a>Customers</a></li>
+                      <li><a>Customers</a></li>
+                      <li><a>Customers</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </article>
     </body>
 
     <script type="text/javascript">
+
+        function set_highlight_hover() {
+            
+            $("area").hover(function() {
+                $(this).mapster("highlight", true)
+            }, function() {
+                $(this).mapster("highlight", false)
+            })
+
+        }
+        function set_wounds_fadein() {
+
+            $("map[name=male-map] area").on('click', function () {
+                $("#wounds_panel").fadeIn()
+            });
+
+            $("#wounds_panel_close").on('click', function() {
+                $("#wounds_panel").fadeOut()               
+            })
+
+        }
         $(function() {
             $('img').mapster({
               fillColor: '0000ff',
@@ -66,18 +106,9 @@
              fillOpacity: 0.2
             });
 
-            $("area").hover(function() {
+            set_highlight_hover()
+            set_wounds_fadein()
 
-                $(this).mapster("highlight", true)
-                //$(this).mapster('set', true)
-                //console.log(this)
-
-            }, function() {
-
-                $(this).mapster("highlight", false)
-                //$(this).mapster('false', true)
-
-            })
         })
     </script>
 

@@ -2,24 +2,18 @@
 function open_gender_tile(event)
 {
 
+    $("#vitals_panel").fadeIn()
     if (event.data.gender == "male") {
 
-        $("#male_body").show()
+        $("#male_body").fadeIn()
         $("#female_body").hide()
 
     } else {
 
         $("#male_body").hide()
-        $("#female_body").show()
+        $("#female_body").fadeIn()
 
     }
-
-}
-
-function hide_tiles()
-{
-
-    $("#panel_tiles").hide()
 
 }
 
@@ -29,6 +23,17 @@ function open_panel(event)
     open_gender_tile(event)
 
 }
+
+function hide_everything()
+{
+
+    $("#male_body").hide()
+    $("#female_body").hide()
+    $("#wounds_panel").hide()
+    $("#vitals_panel").hide()
+
+}
+
 
 function nui_event(event)
 {
@@ -45,27 +50,19 @@ function keyboard_handler()
     switch (event.key) {
 
         case "Escape":
-            hide_tiles()
+            hide_everything()
             $.post("http://car-fob/EscapeCarFob", JSON.stringify({}))
             break;
 
     }
 }
 
-function hide_everything()
-{
-
-    $("#male_body").hide()
-    $("#female_body").hide()
-
-}
-
 $(function() 
 {
 
-    hide_everything();
+    hide_everything()
     open_gender_tile({"data":{"gender":"male"}})
-    window.addEventListener('message', nui_event);
+    window.addEventListener('message', nui_event)
     window.addEventListener('keydown', keyboard_handler)
 
 })
