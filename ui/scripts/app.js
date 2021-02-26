@@ -4,13 +4,13 @@ function open_gender_tile(event)
 
     if (event.data.gender == "male") {
 
-        $("#male_body_tile").show()
-        $("#female_body_tile").hide()
+        $("#male_body").show()
+        $("#female_body").hide()
 
     } else {
 
-        $("#male_body_tile").hide()
-        $("#female_body_tile").show()
+        $("#male_body").hide()
+        $("#female_body").show()
 
     }
 
@@ -52,11 +52,18 @@ function keyboard_handler()
     }
 }
 
+function hide_everything()
+{
 
+    $("#male_body").hide()
+    $("#female_body").hide()
+
+}
 
 $(function() 
 {
 
+    hide_everything();
     open_gender_tile({"data":{"gender":"male"}})
     window.addEventListener('message', nui_event);
     window.addEventListener('keydown', keyboard_handler)
