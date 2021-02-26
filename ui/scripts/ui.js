@@ -8,6 +8,7 @@ function set_highlight_hover() {
     })
 
 }
+
 function set_wounds_fadein() {
 
     $("map[name=male-map] area").on('click', function () {
@@ -32,6 +33,7 @@ function set_wounds_fadein() {
     })
 
 }
+
 $(function() {
     $('img').mapster({
       fillColor: '0000ff',
