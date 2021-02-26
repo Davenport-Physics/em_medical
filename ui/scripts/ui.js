@@ -15,6 +15,11 @@ function set_wounds_fadein() {
         selected_area = this;
     });
 
+    $("map[name=female-map] area").on('click', function () {
+        $("#wounds_panel").fadeIn()
+        selected_area = this;
+    });
+
     $("#wounds_panel_close").on('click', function() {
         if (selected_area != null) {
 
