@@ -2,16 +2,16 @@
 function open_gender_tile(event)
 {
 
-    $("#vitals_panel").fadeIn()
+    $("#vitals_panel").fadeIn(4000)
     if (event.data.gender == "male") {
 
-        $("#male_body").fadeIn()
+        $("#male_body").fadeIn(2500)
         $("#female_body").hide()
 
     } else {
 
         $("#male_body").hide()
-        $("#female_body").fadeIn()
+        $("#female_body").fadeIn(2500)
 
     }
 
